@@ -12,9 +12,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-/**
- * Created by flo on 1/18/17.
- */
 
 public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
   private static final String TAG = "FStatePagerAdapter";
@@ -188,7 +185,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
     }
   }
 
-/*MM
+  /*MM
   @Override
   public void notifyDataSetChanged() {
     //Checks if fragments after currFragment are incorrect, if so deletes them.

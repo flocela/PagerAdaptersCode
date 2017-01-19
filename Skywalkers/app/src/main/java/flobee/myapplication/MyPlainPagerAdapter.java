@@ -1,10 +1,8 @@
 package flobee.myapplication;
 
 
-import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
-import android.view.ViewGroup;
 
 public class MyPlainPagerAdapter extends PagerAdapter {
 
@@ -16,12 +14,20 @@ public class MyPlainPagerAdapter extends PagerAdapter {
 
   @Override
   public int getCount() {
+    return 0;
+  }
+
+  @Override
+  public boolean isViewFromObject(View view, Object object) {
+    return false;
+  }
+}
+  /*CC
+  @Override
+  public int getCount() {
     return characterAdapter.getCount();
   }
 
-  //CC /*
-  // See https://github.com/vogellacompany/codeexamples-android/blob/master/de.vogella.
-  // android.viewpager/src/de/vogella/android/viewpager/ViewPagerActivity.java
   @Override
   public Object instantiateItem(ViewGroup container, int position) {
     Character character = characterAdapter.getCharacterAt(position);
@@ -30,9 +36,10 @@ public class MyPlainPagerAdapter extends PagerAdapter {
     characterView.setCharacter(character);
     container.addView(characterView);
     return characterView;
-  } //CC */
+  }
+  CC*/
 
-  //DD /*
+  /*DD
   @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
     container.removeView((CharacterView)object);
@@ -41,5 +48,5 @@ public class MyPlainPagerAdapter extends PagerAdapter {
   @Override
   public boolean isViewFromObject(View view, Object object) {
     return view == object;
-  } //DD */
-}
+  }
+  DD*/

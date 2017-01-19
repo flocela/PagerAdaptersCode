@@ -36,8 +36,6 @@ public class CharacterFragment extends Fragment {
                            Bundle savedInstanceState) {
     CharacterView characterView = new CharacterView(this.getContext(), null);
     characterView.setCharacter(character);
-    characterView.setChildListener(
-      ((MainActivity)getActivity()).getChildListener());
     return characterView;
   }
 
@@ -88,6 +86,6 @@ public class CharacterFragment extends Fragment {
     }
     return getCharacter().getCharacterNameHashCode();
   }
-   JJ*/
+  JJ*/
 
 }
