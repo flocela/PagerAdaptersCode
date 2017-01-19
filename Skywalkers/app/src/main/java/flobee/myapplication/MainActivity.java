@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-  ChildListener childListener;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -28,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
   AA*/
 
   /*FF
+  ChildListener childListener;
+
   public ChildListener getChildListener () {
     if (null != childListener) {
       childListener = new CharacterView.ChildListener() {
