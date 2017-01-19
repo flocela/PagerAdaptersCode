@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+             android:layout_gravity="center"
+             android:layout_marginBottom="8dp">
+
+  <Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:textSize="18sp"
+    android:textColor="@color/gold"
+    android:background="@color/grey"
+    android:id="@+id/offspring_button"
+    android:clickable="false">
+  </Button>
+</FrameLayout>
