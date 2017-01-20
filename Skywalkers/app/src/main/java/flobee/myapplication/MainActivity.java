@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     CharacterView characterView = (CharacterView)findViewById(R.id.character_view);
     characterView.setCharacter(SkyWalker.shmiSkywalker);
   }
+  
 }
 
   /*AA
