@@ -1,15 +1,28 @@
 package flobee.myapplication;
 
 
+import android.app.Activity;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.view.ViewPager;
 
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.registerIdlingResources;
 import static android.support.test.espresso.Espresso.unregisterIdlingResources;
+import static android.support.test.espresso.action.ViewActions.swipeLeft;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
 public class StraightLineWIRTest {
@@ -29,38 +42,43 @@ public class StraightLineWIRTest {
 
   @After
   public void tearDownIdlingResource () {
+    //unregisterIdlingResources(idlingResource);
     unregisterIdlingResources(idlingResource);
   }
 
   @Test
   public void firstSwipe () {
-/*AA
+    ///*AA
     Activity activity = startActivity();
 
+    //idlingResource = new ViewPagerIdlingResource((ViewPager)activity.
+    // findViewById(R.id.view_pager), "VPIR_0");
+    //registerIdlingResources(idlingResource);
     idlingResource = new ViewPagerIdlingResource((ViewPager)activity.
       findViewById(R.id.view_pager), "VPIR_0");
     registerIdlingResources(idlingResource);
 
-
     onView(isRoot()).perform(swipeLeft());
-    //idlingResource.setIdle(false);
-    //waitForViewPagerResponse(1000);
     onView(allOf(withId(R.id.character_name),withText(anakin_s))).
       check(matches(isCompletelyDisplayed()));
     onView(allOf(withId(R.id.character_name),withText(shmi_s))).
       check(matches(not(isCompletelyDisplayed())));
-      AA*/
+     // AA*/
   }
 
   @Test
   public void fifthSwipe () {
-    /*AA
+    ///*AA
     Activity activity = startActivity();
 
     idlingResource = new ViewPagerIdlingResource((ViewPager)activity.
       findViewById(R.id.view_pager), "VPIR_0");
     registerIdlingResources(idlingResource);
 
+    //idlingResource = new ViewPagerIdlingResource((ViewPager)activity.
+    //  findViewById(R.id.view_pager), "VPIR_0");
+    //registerIdlingResources(idlingResource);
+
     onView(isRoot()).perform(swipeLeft());
     onView(allOf(withId(R.id.character_name),withText(anakin_s))).
       check(matches(isCompletelyDisplayed()));
@@ -92,7 +110,7 @@ public class StraightLineWIRTest {
       check(matches(isCompletelyDisplayed()));
     onView(allOf(withId(R.id.character_name),withText(jacen_s))).
       check(matches(not(isDisplayed())));
-      AA*/
+     // AA*/
   }
 
   private MainActivity startActivity() {

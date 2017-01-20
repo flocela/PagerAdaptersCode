@@ -6,17 +6,32 @@ import java.util.ArrayList;
 public class SkywalkerAdapter implements CharacterAdapter {
   private ArrayList<Character> characters;
 
-  /*DD
+  @Override
+  public int getCount() {
+    return characters.size();
+  }
+
   public void addCharacters (ArrayList<Character> characters) {
     this.characters = characters;
   }
-  public Character getCharacterAt (int position) {
 
+  public Character getCharacterAt (int position) {
     if (position < characters.size())
       return characters.get(position);
     else
       return null;
+  }
 
+  /*DD
+  public void addCharacters (ArrayList<Character> characters) {
+    this.characters = characters;
+  }
+
+  public Character getCharacterAt (int position) {
+    if (position < characters.size())
+      return characters.get(position);
+    else
+      return null;
   }
   DD*/
 

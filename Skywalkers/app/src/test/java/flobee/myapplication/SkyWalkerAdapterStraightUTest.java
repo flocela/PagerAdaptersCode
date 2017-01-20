@@ -1,7 +1,12 @@
 package flobee.myapplication;
 
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import java.util.ArrayList;
+
+import static junit.framework.Assert.assertEquals;
 
 public class SkyWalkerAdapterStraightUTest {
   private static ArrayList<Character> shmiToAlana;
@@ -10,8 +15,8 @@ public class SkyWalkerAdapterStraightUTest {
   private static Character leiaO;
   private static Character jacenS;
   private static Character allanaS;
-  private static SkywalkerAdapter lineageAdapter;
-  /*DD
+  private static SkywalkerAdapter characterAdapter;
+
   @BeforeClass
   public static void initCharacters () {
     shmiS   = new Character("Shmi Skywalker");
@@ -21,22 +26,53 @@ public class SkyWalkerAdapterStraightUTest {
     allanaS = new Character("Allana Solo");
     shmiToAlana = new ArrayList<Character>();
     shmiToAlana.add(shmiS);
+
     shmiToAlana.add(anakinS);
     shmiToAlana.add(leiaO);
     shmiToAlana.add(jacenS);
     shmiToAlana.add(allanaS);
-    lineageAdapter = new SkywalkerAdapter();
-    lineageAdapter.addCharacters(shmiToAlana);
+    characterAdapter = new SkywalkerAdapter();
+    characterAdapter.addCharacters(shmiToAlana);
   }
 
   @Test
   public void returnsCharacterAtPosition0 () {
-    //DD assertEquals(shmiS, characterAdapter.getCharacterAt(0));
+    assertEquals(shmiS, characterAdapter.getCharacterAt(0));
   }
 
   @Test
   public void getCount () {
-    //DD assertEquals(shmiToAlana.size(), characterAdapter.getCount());
+    assertEquals(shmiToAlana.size(), characterAdapter.getCount());
+  }
+
+}
+
+ /*DD
+  @BeforeClass
+  public static void initCharacters () {
+    shmiS   = new Character("Shmi Skywalker");
+    anakinS = new Character("Anakin Skywalker");
+    leiaO   = new Character("Leia Organa");
+    jacenS  = new Character("Jacen Solo");
+    allanaS = new Character("Allana Solo");
+    shmiToAlana = new ArrayList<Character>();
+    shmiToAlana.add(shmiS);
+
+    shmiToAlana.add(anakinS);
+    shmiToAlana.add(leiaO);
+    shmiToAlana.add(jacenS);
+    shmiToAlana.add(allanaS);
+    characterAdapter = new SkywalkerAdapter();
+    characterAdapter.addCharacters(shmiToAlana);
+  }
+
+  @Test
+  public void returnsCharacterAtPosition0 () {
+    assertEquals(shmiS, characterAdapter.getCharacterAt(0));
+  }
+
+  @Test
+  public void getCount () {
+    assertEquals(shmiToAlana.size(), characterAdapter.getCount());
   }
   DD*/
-}
