@@ -12,7 +12,6 @@ import android.widget.TextView;
 public class CharacterView extends LinearLayout {
 
   private String characterName;
-  private ChildListener listener;
 
   public CharacterView(Context context, AttributeSet attrs) {
     super(context, attrs);
@@ -43,6 +42,7 @@ public class CharacterView extends LinearLayout {
     nameView.setText(characterName);
   }
 
+}
   /*HH
   R.layout.character_w_kids
 
@@ -101,4 +101,4 @@ public class CharacterView extends LinearLayout {
   }
   II*/
 
-}
+

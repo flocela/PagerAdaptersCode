@@ -1,25 +1,10 @@
 package flobee.myapplication;
 
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.v4.view.PagerAdapter;
-import android.util.AttributeSet;
-import android.view.ViewGroup;
-
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 /*AA
 @RunWith(MockitoJUnitRunner.class) AA*/
@@ -29,17 +14,19 @@ public class MyPlainPagerAdapterUTest {
 
   @Mock CharacterAdapter mockCharacterAdapter;
   int   count = 5;
-
-  ///*AA //Tests getCount()
+/*AA
+  //Tests getCount()
   @Test
   public void returnsCountFromDataAdapter () {
+
     when(mockCharacterAdapter.getCount()).thenReturn(count);
 
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
     assertEquals(count, pagerAdapter.getCount());
-  } //AA*/
 
-  ///*BB /*
+  }
+AA*/
+  /*BB
   @Mock Context       mockContext;
   @Mock CharacterView mockCharacterView;
   @Mock CharacterView mockBadCharacterView;
@@ -86,9 +73,9 @@ public class MyPlainPagerAdapterUTest {
     pagerAdapter.instantiateItem(mockContainerView, position);
 
     verify(mockCharacterView).setCharacter(mockLeia);
-  }//BB */
+  }BB */
 
-  //CC /*
+  /*CC
   // tests destroyItem(View container, int position, Object view)
   // tests that view is removed from its container
   @Test
@@ -117,10 +104,10 @@ public class MyPlainPagerAdapterUTest {
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
 
     assertFalse(pagerAdapter.isViewFromObject(mockBadCharacterView, mockCharacterView));
-  } //CC */
+  } CC */
 
-  //BB@RunWith(PowerMockRunner.class) // need PowerMockRunner so add testCompile('org.powermock:powermock-module-junit4:1.6.2)
-  //BB@PrepareForTest({MyPlainPagerAdapter.class, NamedDrawable.class, CharacterView.class}) // whenNew is called from inside these classes. PrepareForTest requires @RunWith(PowerMockRunner.class).
-
+  /*BB@RunWith(PowerMockRunner.class) // need PowerMockRunner so add testCompile('org.powermock:powermock-module-junit4:1.6.2)
+  @PrepareForTest({MyPlainPagerAdapter.class, NamedDrawable.class, CharacterView.class}) // whenNew is called from inside these classes. PrepareForTest requires @RunWith(PowerMockRunner.class).
+  */
 
 }

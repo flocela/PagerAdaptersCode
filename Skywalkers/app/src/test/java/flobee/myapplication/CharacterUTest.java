@@ -16,8 +16,6 @@ public class CharacterUTest {
   private static Character shmiSame;
   private static Character shmiDiff;
   private static Character anakinS;
-  private static Character anakinSame;
-  private static Character anakinDiff;
   private static Character leiaO;
   private static Character lukeS;
 
@@ -26,10 +24,7 @@ public class CharacterUTest {
     shmiS      = new Character("Shmi Skywalker");
     shmiSame   = new Character("Shmi Skywalker");
     shmiDiff   = new Character("Shmi Diff");
-
     anakinS    = new Character("Anakin Skywalker");
-    anakinSame = new Character("Anakin Skywalker");
-    anakinDiff = new Character("Anakin Diff");
 
     leiaO      = new Character("Leia Organa");
     lukeS      = new Character("Luke Skywalker");
