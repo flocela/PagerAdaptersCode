@@ -36,9 +36,17 @@ public class MyPlainPagerAdapter extends PagerAdapter {
     return (characterView.getName().equals(object));
   }
 
+  //position is the original position from the adapter, not the position
+  //in the container.
   @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
-    container.removeViewAt(position);
+    for (int ii=0; ii< container.getChildCount(); ii++) {
+      View view = container.getChildAt(ii);
+      if (((CharacterView)view).getName().equals(object)) {
+        container.removeView(view);
+        return;
+      }
+    }
   }
 }
   /*AA
