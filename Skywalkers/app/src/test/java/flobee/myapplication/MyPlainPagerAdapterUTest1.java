@@ -1,6 +1,5 @@
 package flobee.myapplication;
 
-
 import android.support.v4.view.PagerAdapter;
 
 import org.junit.Test;
@@ -8,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static junit.framework.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 ///*AA

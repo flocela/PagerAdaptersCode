@@ -63,26 +63,26 @@ public class MyFragStatePagerAdapterKinkedUTest {
     assertEquals(count, pagerAdapter.getCount());
   }
 
-  // Tests getItem(int position)
+  // Tests getItem(int mockPosition)
   // Gets mockLeiaO from mockCharacterAdapter, uses mockLeiaO to make a fragment
   // Returns that fragment, which is mockCharacterFragment.
   @Test
   public void returnsFragmentWithCorrectAttributes () {
-    when(mockCharacterAdapter.getCharacterAt(position)).thenReturn(mockLeiaO);
+    when(mockCharacterAdapter.getCharacterAt(mockPosition)).thenReturn(mockLeiaO);
     when(CharacterFragment.newInstance(mockLeiaO)).thenReturn(mockLeiaFragment);
 
     MyFragStatePagerAdapter fPagerAdapter =
       new MyFragStatePagerAdapter(mockFragmentManager, mockCharacterAdapter);
 
-    Fragment fragment = fPagerAdapter.getItem(position);
-    verify(mockCharacterAdapter).gotCharacterAt(position);
+    Fragment fragment = fPagerAdapter.getItem(mockPosition);
+    verify(mockCharacterAdapter).gotCharacterAt(mockPosition);
     assertEquals(mockLeiaFragment, fragment);
   }
 
   // Tests getItemPosition(Object object)
   // Gets Character from object, which is a CharacterFragment.
-  // Get position of that character from mockCharacterAdapter,
-  // then return that position.
+  // Get mockPosition of that character from mockCharacterAdapter,
+  // then return that mockPosition.
   @Test
   public void askDataAdapterWithCharacterFromFragment () {
     when(mockAnakinFragment.getCharacter()).thenReturn(mockAnankinS);

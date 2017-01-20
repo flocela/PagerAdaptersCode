@@ -1,7 +1,11 @@
 package flobee.myapplication;
 
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
 import java.util.ArrayList;
 
+@RunWith(JUnit4.class)
 public class SkwalkerAdapterKinkedUTest {
 
   private static ArrayList<Character> shmiToAlana;
@@ -74,7 +78,7 @@ public class SkwalkerAdapterKinkedUTest {
   }
 
   // test getItemPosition(Character character)
-  // when item position has not been changed.
+  // when item mockPosition has not been changed.
   @Test
   public void itemPositionIsUnchanged () {
     int returnedInt = skywalkerAdapter.getItemPosition(anakinS);

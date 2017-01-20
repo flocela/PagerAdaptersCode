@@ -13,11 +13,12 @@ import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertFalse;
 import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.when;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
+
 
 ///*BB
 @RunWith(PowerMockRunner.class) // need PowerMockRunner so add testCompile('org.powermock:powermock-module-junit4:1.6.2)
@@ -31,78 +32,91 @@ public class MyPlainPagerAdapterUTest2 {
   @Mock CharacterView    mockBadCharacterView;
   @Mock ViewGroup        mockContainerView;
   @Mock Character        mockLeia;
+  @Mock Character        mockCharacter;
+  String                 leiaName = "Leia Organa";
+  @Mock String           mockAName;
   AttributeSet           mockAttributeSet = null;
-  int                    position         = 2;
+  @Mock int              mockPosition;
   ///*BB
+
   @Before
   public void initCharacters () {
-    when(mockCharacterAdapter.getCharacterAt(position)).thenReturn(mockLeia);
+    when(mockCharacterAdapter.getCharacterAt(mockPosition)).thenReturn(mockLeia);
+    when(mockLeia.getName()).thenReturn(leiaName);
     when(mockContainerView.getContext()).thenReturn(mockContext);
   }
 
-  // Tests instantiateView(ViewGroup container, int position)
+  // Tests instantiateView(ViewGroup container, int mockPosition)
   // Tests that Character View is made and is added to ViewGroup container.
   @Test
   public void characterViewAttributesAddedToCharacterView () throws Exception {
-    int position = 2;
-
     whenNew(CharacterView.class).withAnyArguments().thenReturn(mockCharacterView);
 
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
-    pagerAdapter.instantiateItem(mockContainerView, position);
+    pagerAdapter.instantiateItem(mockContainerView, mockPosition);
 
     verify(mockContainerView).addView(mockCharacterView);
   }
 
-  // Tests instantiateView(View container, int position)
+  // Tests instantiateView(ViewGroup container, int mockPosition)
   // Tests that Leia's character is added to CharacterView.
   @Test
   public void addsViewToCollection () throws Exception {
-    int position = 2;
-
     whenNew(CharacterView.class).withArguments(mockContext, mockAttributeSet).
       thenReturn(mockCharacterView);
 
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
-    pagerAdapter.instantiateItem(mockContainerView, position);
+    pagerAdapter.instantiateItem(mockContainerView, mockPosition);
 
     verify(mockCharacterView).setCharacter(mockLeia);
+  }
+
+  // Tests instantiateView(ViewGroup container, int mockPosition)
+  // Tests leia's name is returned.
+  @Test
+  public void returnsCharacterName () throws Exception {
+    whenNew(CharacterView.class).withAnyArguments().thenReturn(mockCharacterView);
+
+    PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
+    Object returnedObject = pagerAdapter.instantiateItem(mockContainerView, mockPosition);
+
+    assertTrue(leiaName.equals(returnedObject));
   }
   //BB */
 
   ///*CC
-  // Tests destroyItem(View container, int position, Object view)
+  // Tests destroyItem(View container, int mockPosition, Object view)
   // Tests that view is removed from its container
   @Test
   public void testRemovesViewFromContainer () {
-    int position = 2;
+    when(mockContainerView.getChildCount()).thenReturn(4);
+    when(mockContainerView.getChildAt(0)).thenReturn(mockCharacterView);
+    when(mockCharacterView.getName()).thenReturn(leiaName);
 
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
-    pagerAdapter.destroyItem(mockContainerView, position, mockCharacterView);
+    pagerAdapter.destroyItem(mockContainerView, mockPosition, leiaName);
 
     verify(mockContainerView).removeView(mockCharacterView);
   }
 
   // Tests isViewFromObject(View view, Object object)
-  // Returns true if object is view (refers to same object)
+  // Test that object returned from instantiateItem() belongs to CharacterView
+  // that was added in instantiateItem()
   @Test
   public void testViewIsFromObject() {
-    PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
+    when(mockCharacterView.getName()).thenReturn(leiaName);
 
-    assertTrue(pagerAdapter.isViewFromObject(mockCharacterView, mockCharacterView));
+    PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
+    assertTrue(pagerAdapter.isViewFromObject(mockCharacterView, "Leia Organa"));
   }
 
   // Tests isViewFromObject(View view, Object object)
   // Returns true if object is view (refers to same object)
   @Test
   public void testViewIsNotFromObject() {
+    when(mockCharacterView.getName()).thenReturn("Luke");
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
-
-    assertFalse(pagerAdapter.isViewFromObject(mockBadCharacterView, mockCharacterView));
+    assertFalse(pagerAdapter.isViewFromObject(mockCharacterView, leiaName));
   } //CC */
-
-  /*BB@RunWith(PowerMockRunner.class) // need PowerMockRunner so add testCompile('org.powermock:powermock-module-junit4:1.6.2)
-  @PrepareForTest({MyPlainPagerAdapter.class, NamedDrawable.class, CharacterView.class}) // whenNew is called from inside these classes. PrepareForTest requires @RunWith(PowerMockRunner.class).
-  */
 
 }

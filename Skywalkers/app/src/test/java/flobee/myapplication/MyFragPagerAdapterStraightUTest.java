@@ -40,16 +40,16 @@ public class MyFragPagerAdapterStraightUTest {
     assertEquals(count, pagerAdapter.getCount());
   }
 
-  // tests getItem(int position)
+  // tests getItem(int mockPosition)
   @Test
   public void returnsFragmentWithCorrAttributes () {
-    when(mockCharacterAdapter.getCharacterAt(position)).thenReturn(mockLeiaO);
+    when(mockCharacterAdapter.getCharacterAt(mockPosition)).thenReturn(mockLeiaO);
     mockStatic(CharacterFragment.class);
     when(CharacterFragment.newInstance(mockLeiaO)).thenReturn(mockFragment);
 
     FragmentPagerAdapter fPagerAdapter =
       new MyFragPagerAdapter(mockFragmentManager, mockCharacterAdapter);
-    Fragment fragment = fPagerAdapter.getItem(position);
+    Fragment fragment = fPagerAdapter.getItem(mockPosition);
 
     assertEquals(mockFragment, fragment);
   }

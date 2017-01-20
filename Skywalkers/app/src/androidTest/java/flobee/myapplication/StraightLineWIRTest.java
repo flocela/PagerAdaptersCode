@@ -21,8 +21,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.core.AllOf.allOf;
 
 @RunWith(AndroidJUnit4.class)
 public class StraightLineWIRTest {
@@ -42,7 +42,6 @@ public class StraightLineWIRTest {
 
   @After
   public void tearDownIdlingResource () {
-    //unregisterIdlingResources(idlingResource);
     unregisterIdlingResources(idlingResource);
   }
 
@@ -51,9 +50,6 @@ public class StraightLineWIRTest {
     ///*AA
     Activity activity = startActivity();
 
-    //idlingResource = new ViewPagerIdlingResource((ViewPager)activity.
-    // findViewById(R.id.view_pager), "VPIR_0");
-    //registerIdlingResources(idlingResource);
     idlingResource = new ViewPagerIdlingResource((ViewPager)activity.
       findViewById(R.id.view_pager), "VPIR_0");
     registerIdlingResources(idlingResource);
@@ -63,7 +59,7 @@ public class StraightLineWIRTest {
       check(matches(isCompletelyDisplayed()));
     onView(allOf(withId(R.id.character_name),withText(shmi_s))).
       check(matches(not(isCompletelyDisplayed())));
-     // AA*/
+      //AA*/
   }
 
   @Test
@@ -75,10 +71,6 @@ public class StraightLineWIRTest {
       findViewById(R.id.view_pager), "VPIR_0");
     registerIdlingResources(idlingResource);
 
-    //idlingResource = new ViewPagerIdlingResource((ViewPager)activity.
-    //  findViewById(R.id.view_pager), "VPIR_0");
-    //registerIdlingResources(idlingResource);
-
     onView(isRoot()).perform(swipeLeft());
     onView(allOf(withId(R.id.character_name),withText(anakin_s))).
       check(matches(isCompletelyDisplayed()));
@@ -110,7 +102,7 @@ public class StraightLineWIRTest {
       check(matches(isCompletelyDisplayed()));
     onView(allOf(withId(R.id.character_name),withText(jacen_s))).
       check(matches(not(isDisplayed())));
-     // AA*/
+      //AA*/
   }
 
   private MainActivity startActivity() {

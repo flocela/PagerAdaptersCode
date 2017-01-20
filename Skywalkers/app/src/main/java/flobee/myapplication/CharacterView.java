@@ -32,6 +32,10 @@ public class CharacterView extends LinearLayout {
     return imageView.getDrawable();
   }
 
+  public String getName () {
+    return characterName;
+  }
+
   private void setDrawable (Drawable drawable) {
     ImageView imageView = (ImageView)this.findViewById(R.id.character_pict);
     imageView.setImageDrawable(drawable);
@@ -41,6 +45,7 @@ public class CharacterView extends LinearLayout {
     TextView nameView = (TextView)this.findViewById(R.id.character_name);
     nameView.setText(characterName);
   }
+
 
 }
   /*HH

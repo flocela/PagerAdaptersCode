@@ -63,26 +63,26 @@ public class MyFragPagerAdapterKinkedUTest {
     assertEquals(count, pagerAdapter.getCount());
   }
 
-  // tests getItem(int position)
+  // tests getItem(int mockPosition)
   // gets mockLeiaO from mockCharacterAdapter, uses mockLeiaO to make a fragment
   // returns that fragment, which is mockCharacterFragment.
   @Test
   public void returnsFragmentWithCorrectAttributes () {
-    when(mockCharacterAdapter.getCharacterAt(position)).thenReturn(mockLeiaO);
+    when(mockCharacterAdapter.getCharacterAt(mockPosition)).thenReturn(mockLeiaO);
     when(CharacterFragment.newInstance(mockLeiaO)).thenReturn(mockLeiaFragment);
 
     MyFragPagerAdapter fPagerAdapter =
       new MyFragPagerAdapter(mockFragmentManager, mockCharacterAdapter);
 
-    Fragment fragment = fPagerAdapter.getItem(position);
-    verify(mockCharacterAdapter).gotCharacterAt(position);
+    Fragment fragment = fPagerAdapter.getItem(mockPosition);
+    verify(mockCharacterAdapter).gotCharacterAt(mockPosition);
     assertEquals(mockLeiaFragment, fragment);
   }
 
   // test getItemPosition(Object object)
   // gets Character from object, which is a CharacterFragment.
-  // get position of that character from mockCharacterAdapter,
-  // then return that position.
+  // get mockPosition of that character from mockCharacterAdapter,
+  // then return that mockPosition.
   @Test
   public void askDataAdapterWithCharacterFromFragment () {
     when(mockAnakinFragment.getCharacter()).thenReturn(mockAnankinS);
@@ -110,12 +110,12 @@ public class MyFragPagerAdapterKinkedUTest {
   // create a new fragment and get id from it.
   @Test
   public void getItemIDFromCharacterAdapter () throws Exception {
-    when(mockCharacterAdapter.getCharacterAt(position)).thenReturn(mockAnankinS);
+    when(mockCharacterAdapter.getCharacterAt(mockPosition)).thenReturn(mockAnankinS);
     when(CharacterFragment.newInstance(mockAnankinS)).thenReturn(mockAnakinFragment);
     when(mockAnakinFragment.getNameHash()).thenReturn(mockAnakinHash);
     MyFragPagerAdapter adapter =
       new MyFragPagerAdapter(mockFragmentManager, mockCharacterAdapter);
-    assertEquals(mockAnakinHash, adapter.getItemId(position));
+    assertEquals(mockAnakinHash, adapter.getItemId(mockPosition));
   }
  JJ*/
 }

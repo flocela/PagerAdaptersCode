@@ -26,17 +26,19 @@ public class MyPlainPagerAdapter extends PagerAdapter {
     CharacterView characterView = new CharacterView(context, null);
     characterView.setCharacter(character);
     container.addView(characterView);
-    return characterView;
-  }
-
-  @Override
-  public void destroyItem(ViewGroup container, int position, Object object) {
-    container.removeView((CharacterView)object);
+    return character.getName();
   }
 
   @Override
   public boolean isViewFromObject(View view, Object object) {
-    return view == object;
+    //View is CharacterView added to container in instantiateItem()
+    CharacterView characterView = (CharacterView)view;
+    return (characterView.getName().equals(object));
+  }
+
+  @Override
+  public void destroyItem(ViewGroup container, int position, Object object) {
+    container.removeViewAt(position);
   }
 }
   /*AA

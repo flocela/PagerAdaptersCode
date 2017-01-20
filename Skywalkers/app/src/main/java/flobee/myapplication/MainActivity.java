@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    //MyPlainPagerAdapter implementation
     ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
     CharacterAdapter characterAdapter = new SkywalkerAdapter();
     ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
@@ -24,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
   }
 
 }
+
+/**START
+   CharacterView characterView = (CharacterView)findViewById(R.id.character_view);
+   characterView.setCharacter(SkyWalker.shmiSkywalker);
+ START*/
 
   /*AA
   //MyPlainPagerAdapter implementation

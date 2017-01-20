@@ -39,7 +39,7 @@ public class MyFragStatePagerAdapterStraightUTest {
     assertEquals(mockCount, pagerAdapter.getCount());
   }
 
-  // tests getItem(int position)
+  // tests getItem(int mockPosition)
   @Test
   public void returnsFragmentWithCorrAttributes () {
     when(mockCharacterAdapter.getCharacterAt(mockPosition)).thenReturn(mockLeiaO);
