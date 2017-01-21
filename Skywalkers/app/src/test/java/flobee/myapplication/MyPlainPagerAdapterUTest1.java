@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.powermock.api.mockito.PowerMockito.when;
+import static org.mockito.Mockito.when;
 
 ///*AA
 @RunWith(MockitoJUnitRunner.class)
@@ -25,6 +25,7 @@ CharacterAdapter mockCharacterAdapter;
     when(mockCharacterAdapter.getCount()).thenReturn(count);
 
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
+
     assertEquals(count, pagerAdapter.getCount());
   }
 //AA*/

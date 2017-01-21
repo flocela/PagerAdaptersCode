@@ -23,7 +23,8 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 import static org.powermock.api.support.membermodification.MemberMatcher.methodsDeclaredIn;
 import static org.powermock.api.support.membermodification.MemberModifier.suppress;
 
-//@RunWith(MockitoJUnitRunner.class) allows me to use when() method on an androidClass
+//@RunWith(MockitoJUnitRunner.class) allows me to use when(), which is helpful
+// when I need to mock an androidClass
 // mock for example when(mockActivity.getSystemService(...).thenReturn(...)
 //@RunWith(PowerMockRunner.class) allows me to use when() method with a static class.
 @RunWith(PowerMockRunner.class)
