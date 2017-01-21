@@ -35,7 +35,7 @@ public class MyFragPagerAdapterKinkedUTest {
   @Mock Character         mockAllanaS;
 
   @Mock long mockAnakinHash;
-  int    position     = 2;
+  @Mock int  mockPosition;
   int    itemPosition = 10;
   String leiaOName = "Leia Organa";
   AttributeSet mockAttributeSet = null;

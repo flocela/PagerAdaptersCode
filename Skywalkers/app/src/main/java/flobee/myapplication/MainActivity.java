@@ -14,12 +14,14 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    //MyFragPagerAdapter implementation
     ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
     CharacterAdapter characterAdapter = new SkywalkerAdapter();
     ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
     characterAdapter.addCharacters(allanaSoloFamily);
-    PagerAdapter plainAdapter = new MyPlainPagerAdapter(characterAdapter);
-    viewPager.setAdapter(plainAdapter);
+    PagerAdapter myFragPagerAdapter =
+      new MyFragPagerAdapter(this.getSupportFragmentManager(),characterAdapter);
+    viewPager.setAdapter(myFragPagerAdapter);
   }
 
 }

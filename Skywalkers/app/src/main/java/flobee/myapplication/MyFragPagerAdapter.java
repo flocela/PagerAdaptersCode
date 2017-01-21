@@ -15,20 +15,20 @@ public class MyFragPagerAdapter extends FragmentPagerAdapter {
   }
 
   @Override
-  public Fragment getItem(int position) {
-    return null;
+  public int getCount() {
+    return characterAdapter.getCount();
   }
 
   @Override
-  public int getCount() {
-    return 0;
+  public Fragment getItem(int position) {
+    return CharacterFragment.newInstance(characterAdapter.getCharacterAt(position));
   }
 }
 
   /*GG
   @Override
   public int getCount() {
-    GG return characterAdapter.getCount();
+    return characterAdapter.getCount();
   }
 
     @Override
