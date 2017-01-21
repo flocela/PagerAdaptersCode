@@ -60,7 +60,18 @@ public class MainActivity extends AppCompatActivity {
   }
   FF*/
 
-  /*JJ
+  /*JJ1
+  //MyFragPagerAdapter implementation
+  ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
+  CharacterAdapter characterAdapter = new SkywalkerAdapter();
+  ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
+  characterAdapter.addCharacters(allanaSoloFamily);
+  PagerAdapter myFragPagerAdapter =
+    new MyFragPagerAdapter(this.getSupportFragmentManager(),characterAdapter);
+  viewPager.setAdapter(myFragPagerAdapter);
+  JJ1*/
+
+  /*JJ2
   public ChildListener getChildListener () {
     return new ChildListener() {
       @Override
@@ -74,16 +85,8 @@ public class MainActivity extends AppCompatActivity {
       }
     };
   }
+  JJ2*/
 
-  //MyFragPagerAdapter implementation
-  ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
-  CharacterAdapter characterAdapter = new SkywalkerAdapter();
-  ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
-  characterAdapter.addCharacters(allanaSoloFamily);
-  PagerAdapter myFragPagerAdapter =
-    new MyFragPagerAdapter(this.getSupportFragmentManager(),characterAdapter);
-  viewPager.setAdapter(myFragPagerAdapter);
-  JJ*/
 
   /*KK
   //MyFragStatePagerAdapter implementation
