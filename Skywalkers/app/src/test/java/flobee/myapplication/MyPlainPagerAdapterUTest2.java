@@ -40,18 +40,18 @@ public class MyPlainPagerAdapterUTest2 {
   ///*BB
 
   @Before
-  public void initCharacters () {
+  public void initCharacters () throws Exception {
     when(mockCharacterAdapter.getCharacterAt(mockPosition)).thenReturn(mockLeia);
     when(mockLeia.getName()).thenReturn(leiaName);
     when(mockContainerView.getContext()).thenReturn(mockContext);
+    whenNew(CharacterView.class).withArguments(mockContext, mockAttributeSet).
+      thenReturn(mockCharacterView);
   }
 
   // Tests instantiateView(ViewGroup container, int mockPosition)
-  // Tests that Character View is made and is added to ViewGroup container.
+  // Character View is made and is added to ViewGroup container.
   @Test
-  public void characterViewAttributesAddedToCharacterView () throws Exception {
-    whenNew(CharacterView.class).withAnyArguments().thenReturn(mockCharacterView);
-
+  public void characterViewAttributesAddedToCharacterView () {
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
     pagerAdapter.instantiateItem(mockContainerView, mockPosition);
 
@@ -61,10 +61,7 @@ public class MyPlainPagerAdapterUTest2 {
   // Tests instantiateView(ViewGroup container, int mockPosition)
   // Tests that Leia's character is added to CharacterView.
   @Test
-  public void addsViewToCollection () throws Exception {
-    whenNew(CharacterView.class).withArguments(mockContext, mockAttributeSet).
-      thenReturn(mockCharacterView);
-
+  public void addsViewToCollection () {
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
     pagerAdapter.instantiateItem(mockContainerView, mockPosition);
 
@@ -72,11 +69,9 @@ public class MyPlainPagerAdapterUTest2 {
   }
 
   // Tests instantiateView(ViewGroup container, int mockPosition)
-  // Tests leia's name is returned.
+  // Leia's name is returned.
   @Test
-  public void returnsCharacterName () throws Exception {
-    whenNew(CharacterView.class).withAnyArguments().thenReturn(mockCharacterView);
-
+  public void returnsCharacterName () {
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
     Object returnedObject = pagerAdapter.instantiateItem(mockContainerView, mockPosition);
 
@@ -86,7 +81,7 @@ public class MyPlainPagerAdapterUTest2 {
 
   ///*CC
   // Tests destroyItem(View container, int mockPosition, Object view)
-  // Tests that view is removed from its container
+  // View is removed from its container
   @Test
   public void testRemovesViewFromContainer () {
     when(mockContainerView.getChildCount()).thenReturn(4);
@@ -100,8 +95,7 @@ public class MyPlainPagerAdapterUTest2 {
   }
 
   // Tests isViewFromObject(View view, Object object)
-  // Test that object returned from instantiateItem() belongs to CharacterView
-  // that was added in instantiateItem()
+  // Object "Leia Organa" corresponds to mockCharacterView, should return true.
   @Test
   public void testViewIsFromObject() {
     when(mockCharacterView.getName()).thenReturn(leiaName);
@@ -111,7 +105,7 @@ public class MyPlainPagerAdapterUTest2 {
   }
 
   // Tests isViewFromObject(View view, Object object)
-  // Returns true if object is view (refers to same object)
+  // Object leiaName does not correspond to mockCharacterView, should return false.
   @Test
   public void testViewIsNotFromObject() {
     when(mockCharacterView.getName()).thenReturn("Luke");

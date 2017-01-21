@@ -15,8 +15,7 @@ import static org.mockito.Mockito.when;
 //AA*/
 public class MyPlainPagerAdapterUTest1 {
 ///*AA
-  @Mock
-CharacterAdapter mockCharacterAdapter;
+  @Mock CharacterAdapter mockCharacterAdapter;
   int   count = 5;
 
   //Tests getCount()

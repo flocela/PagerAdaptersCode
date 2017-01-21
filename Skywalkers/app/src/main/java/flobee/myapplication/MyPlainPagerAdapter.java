@@ -3,6 +3,7 @@ package flobee.myapplication;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -40,6 +41,7 @@ public class MyPlainPagerAdapter extends PagerAdapter {
   //in the container.
   @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
+    Log.i("ATAG", "MyPlainPagerAdapter: onDestroyItem(pos, object): (" + position + ", " + object.toString() + ")");
     for (int ii=0; ii< container.getChildCount(); ii++) {
       View view = container.getChildAt(ii);
       if (((CharacterView)view).getName().equals(object)) {

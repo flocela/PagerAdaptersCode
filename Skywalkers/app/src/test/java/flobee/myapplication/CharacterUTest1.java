@@ -24,9 +24,9 @@ public class CharacterUTest1 {
   // tests getName()
   @Test
   public void getName () {
-    String name = "JacenSolo";
+    String name = "Jacen Solo";
     Character jacenSolo = new Character(name);
-    assertEquals(jacenSolo, jacenSolo.getName());
+    assertEquals(name, jacenSolo.getName());
   }
 
   // tests equals() when two characters are the same.
