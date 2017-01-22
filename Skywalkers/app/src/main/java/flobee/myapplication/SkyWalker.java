@@ -16,6 +16,9 @@ public class SkyWalker {
   public static Character jainaSolo       = new Character("Jaina Solo");
   public static Character anakinSolo      = new Character("Anakin Solo");
 
+  public static Character flobeeSolo      = new Character("Flobee Solo");
+  public static Character kevinSolo       = new Character("Kevin Solo");
+
   private static ArrayList<Character> endsWithAllana      = new ArrayList<>();
   private static ArrayList<Character> endsWithBen         = new ArrayList<>();
   private static ArrayList<Character> endsWithJaina       = new ArrayList<>();
@@ -34,6 +37,8 @@ public class SkyWalker {
     endsWithAllana.add(anakinSkywalker);
     endsWithAllana.add(leiaOrgana);
     endsWithAllana.add(jacenSolo);
+    endsWithAllana.add(flobeeSolo);
+    endsWithAllana.add(kevinSolo);
     endsWithAllana.add(allanaSolo);
     lineages.add(endsWithAllana);
     endsWithBen.add(shmiSkywalker);

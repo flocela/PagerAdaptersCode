@@ -33,6 +33,8 @@ public class StraightLineWIRTest {
   private static final String leia_o   = "Leia Organa";
   private static final String jacen_s  = "Jacen Solo";
   private static final String allana_s = "Allana Solo";
+  private static final String flobee_s = "Flobee Solo";
+  private static final String kevin_s  = "Kevin Solo";
 
   // launch flag should be false so that it is not lazily instantiated. Instead I
   // launch the activity in startActivity().
@@ -63,7 +65,7 @@ public class StraightLineWIRTest {
   }
 
   @Test
-  public void fifthSwipe () {
+  public void seventhSwipe () {
     ///*AA
     Activity activity = startActivity();
 
@@ -91,16 +93,30 @@ public class StraightLineWIRTest {
 
     onView(isRoot()).perform(swipeLeft());
 
-    onView(allOf(withId(R.id.character_name),withText(allana_s))).
+    onView(allOf(withId(R.id.character_name),withText(flobee_s))).
       check(matches(isCompletelyDisplayed()));
     onView(allOf(withId(R.id.character_name),withText(jacen_s))).
       check(matches(not(isDisplayed())));
 
     onView(isRoot()).perform(swipeLeft());
 
+    onView(allOf(withId(R.id.character_name),withText(kevin_s))).
+      check(matches(isCompletelyDisplayed()));
+    onView(allOf(withId(R.id.character_name),withText(flobee_s))).
+      check(matches(not(isDisplayed())));
+
+    onView(isRoot()).perform(swipeLeft());
+
     onView(allOf(withId(R.id.character_name),withText(allana_s))).
       check(matches(isCompletelyDisplayed()));
-    onView(allOf(withId(R.id.character_name),withText(jacen_s))).
+    onView(allOf(withId(R.id.character_name),withText(kevin_s))).
+      check(matches(not(isDisplayed())));
+
+    onView(isRoot()).perform(swipeLeft());
+
+    onView(allOf(withId(R.id.character_name),withText(allana_s))).
+      check(matches(isCompletelyDisplayed()));
+    onView(allOf(withId(R.id.character_name),withText(kevin_s))).
       check(matches(not(isDisplayed())));
       //AA*/
   }

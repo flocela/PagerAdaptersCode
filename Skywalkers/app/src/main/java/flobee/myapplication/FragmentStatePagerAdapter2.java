@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 
 public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
-  private static final String TAG = "FStatePagerAdapter";
+  private static final String TAG = "MyFragStatePagerAdapter";
   private static final boolean DEBUG = false;
 
   private final FragmentManager mFragmentManager;
@@ -89,15 +89,9 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
     while (mSavedState.size() <= position) {
       mSavedState.add(null);
     }
-    int isInLineFragment = getItemPosition(object);
-    if (isInLineFragment != PagerAdapter.POSITION_NONE) {
-      mSavedState.set(position, fragment.isAdded()
-        ? mFragmentManager.saveFragmentInstanceState(fragment) : null);
-      mFragments.set(position, null);
-    }
-    else {
-      mSavedState.set(position, null);
-    }
+    mSavedState.set(position, fragment.isAdded()
+      ? mFragmentManager.saveFragmentInstanceState(fragment) : null);
+    mFragments.set(position, null);
 
     mCurTransaction.remove(fragment);
   }
@@ -185,6 +179,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
     }
   }
 
+
   /*MM
   @Override
   public void notifyDataSetChanged() {
@@ -233,5 +228,31 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
       mSavedState.set(position, null);
     }
   }
+
+  @Override
+  public void destroyItem(ViewGroup container, int position, Object object) {
+    Fragment fragment = (Fragment) object;
+
+    if (mCurTransaction == null) {
+      mCurTransaction = mFragmentManager.beginTransaction();
+    }
+    if (DEBUG) Log.v(TAG, "Removing item #" + position + ": f=" + object
+      + " v=" + ((Fragment)object).getView());
+    while (mSavedState.size() <= position) {
+      mSavedState.add(null);
+    }
+    int isInLineFragment = getItemPosition(object);
+    if (isInLineFragment != PagerAdapter.POSITION_NONE) {
+      mSavedState.set(position, fragment.isAdded()
+        ? mFragmentManager.saveFragmentInstanceState(fragment) : null);
+      mFragments.set(position, null);
+    }
+    else {
+      mSavedState.set(position, null);
+    }
+
+    mCurTransaction.remove(fragment);
+  }
+
   MM*/
 }

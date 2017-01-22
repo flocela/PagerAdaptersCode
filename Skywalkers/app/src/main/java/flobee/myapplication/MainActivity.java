@@ -3,10 +3,13 @@ package flobee.myapplication;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,16 +20,15 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    //MyFragPagerAdapter implementation
     ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
     CharacterAdapter characterAdapter = new SkywalkerAdapter();
     characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.allanaSolo));
     characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.benSkywalker));
     characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.jainaSolo));
     characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.anakinSolo));
-    PagerAdapter myFragPagerAdapter =
-      new MyFragPagerAdapter(this.getSupportFragmentManager(),characterAdapter);
-    viewPager.setAdapter(myFragPagerAdapter);
+    PagerAdapter myFragStatePagerAdapter =
+      new MyFragStatePagerAdapter(this.getSupportFragmentManager(),characterAdapter);
+    viewPager.setAdapter(myFragStatePagerAdapter);
 
     //For posting number of fragments in Activity.
     viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
           @Override
           public void run() {
+            List<Fragment> frags = MainActivity.this.getSupportFragmentManager().getFragments();
             int numOfFragments = MainActivity.this
               .getSupportFragmentManager().getFragments().size();
             TextView fragmentCountView = (TextView)MainActivity.this
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         public void changeChildTo(String parent, String nextChild) {
           ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
           if (viewPager!= null) {
-            MyFragPagerAdapter adapter = (MyFragPagerAdapter)viewPager.getAdapter();
+            MyFragStatePagerAdapter adapter = (MyFragStatePagerAdapter)viewPager.getAdapter();
             adapter.changeChildTo(parent, nextChild);
             adapter.notifyDataSetChanged();
             viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
@@ -148,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
 
   /*KK
-  //MyFragStatePagerAdapter implementation
+  //MyFragStatePagerAdapter
   ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
   CharacterAdapter characterAdapter = new SkywalkerAdapter();
   characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.allanaSolo));
@@ -158,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
   PagerAdapter myFragStatePagerAdapter =
     new MyFragStatePagerAdapter(this.getSupportFragmentManager(),characterAdapter);
   viewPager.setAdapter(myFragStatePagerAdapter);
+
+  and in ChildButtonListener change FragPagerAdapter to FragStatePagerAdapter
   KK*/
 
   /*MM

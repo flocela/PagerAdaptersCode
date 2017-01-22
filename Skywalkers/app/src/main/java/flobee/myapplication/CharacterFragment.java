@@ -69,11 +69,16 @@ public class CharacterFragment extends Fragment {
   public String toString() {
     Character tempCharacter = getCharacter();
     if (tempCharacter == null) {
-      return "no character, "+super.toString();
+      return "no character, ";
     }
     else {
-      return character.getName() + ", "+super.toString();
+      return character.getName();
     }
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
   }
 
   /*II -add to onCreateView()

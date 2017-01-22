@@ -100,6 +100,8 @@ public class KinkedLineWIRTest {
       check(matches(isCompletelyDisplayed()));
     onView(isRoot()).perform(swipeLeft());
     onView(isRoot()).perform(swipeLeft());
+    onView(isRoot()).perform(swipeLeft());
+    onView(isRoot()).perform(swipeLeft());
     onView(allOf(withId(R.id.character_name),withText(allana_s))).
       check(matches(isDisplayed()));
       //HH*/

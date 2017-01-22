@@ -19,7 +19,9 @@ import org.junit.runner.RunWith;
 import java.util.concurrent.TimeoutException;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
+import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
@@ -29,40 +31,67 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.AllOf.allOf;
 
 @RunWith(AndroidJUnit4.class)
-public class StraightLineWViewAction {
+public class KinkedLineWViewActionTest {
+  private ViewPagerIdlingResource idlingResource;
 
   private static final String shmi_s   = "Shmi Skywalker";
   private static final String anakin_s = "Anakin Skywalker";
+  private static final String luke_s   = "Luke Skywalker";
+  private static final String ben_s    = "Ben Skywalker";
   private static final String leia_o   = "Leia Organa";
   private static final String jacen_s  = "Jacen Solo";
   private static final String allana_s = "Allana Solo";
-  private static final String flobee_s = "Flobee Solo";
-  private static final String kevin_s  = "Kevin Solo";
 
   @Rule
-  public ActivityTestRule mActivityRule = new ActivityTestRule(MainActivity.class);
+  public ActivityTestRule<MainActivity> mActivityRule =
+    new ActivityTestRule<>( MainActivity.class);
 
   @Test
   public void oneSwipe () {
+///*HH
     onView(isRoot()).perform(swipeLeft());
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(anakin_s), withId(R.id.character_name)),
-              2500));
+        2000));
     onView(isRoot())
       .perform(waitForMatch(
         allOf(not(isDisplayed()), withText(shmi_s), withId(R.id.character_name)),
         1500));
+      //HH*/
   }
 
+  // KinkedLineWIRTest toBenThenToAllana fails half the time when
+  // NoPageTransformer is not added even when Developer Animations are off.
+  // When this happened ViewPager.SimpleOnPageChangeListener 's methods in
+  // idling resource were never not called after first perform(swipeLeft()).
+  // Since setting viewPager.setPageTransformer, this has failed twice.
   @Test
-  public void fiveSwipes () {
+  public void toBenThenToAllana () {
+    ///*HH
+
     onView(isRoot()).perform(swipeLeft());
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(anakin_s), withId(R.id.character_name)),
-        2500));
+        2000));
+
+    onView(allOf(withId(R.id.offspring_button), withText(luke_s))).perform(click());
+    onView(isRoot())
+      .perform(waitForMatch(
+        allOf(isCompletelyDisplayed(), withText(luke_s), withId(R.id.character_name)),
+        1500));
+
     onView(isRoot()).perform(swipeLeft());
+    onView(isRoot())
+      .perform(waitForMatch(
+        allOf(isCompletelyDisplayed(), withText(ben_s), withId(R.id.character_name)),
+        1500));
+
+    onView(isRoot()).perform(swipeRight());
+    onView(isRoot()).perform(swipeRight());
+
+    onView(allOf(withId(R.id.offspring_button), withText(leia_o))).perform(click());
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(leia_o), withId(R.id.character_name)),
@@ -75,15 +104,11 @@ public class StraightLineWViewAction {
         1500));
 
     onView(isRoot()).perform(swipeLeft());
-    onView(isRoot())
-      .perform(waitForMatch(
-        allOf(isCompletelyDisplayed(), withText(flobee_s), withId(R.id.character_name)),
-        1500));
-
+    onView(isRoot()).perform(swipeLeft());
     onView(isRoot()).perform(swipeLeft());
     onView(isRoot())
       .perform(waitForMatch(
-        allOf(isCompletelyDisplayed(), withText(kevin_s), withId(R.id.character_name)),
+        allOf(isCompletelyDisplayed(), withText(allana_s), withId(R.id.character_name)),
         1500));
 
     onView(isRoot()).perform(swipeLeft());
@@ -91,6 +116,8 @@ public class StraightLineWViewAction {
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(allana_s), withId(R.id.character_name)),
         1500));
+
+      //HH*/
   }
 
   public void waitForViewPagerResponse(long millis) {

@@ -21,7 +21,7 @@ public class CharacterView extends LinearLayout {
     super(context, attrs);
     LayoutInflater inflater = (LayoutInflater)context.
       getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    inflater.inflate(R.layout.character_w_kids, this, true);
+    inflater.inflate(R.layout.character, this, true);
   }
 
   public Drawable getDrawable () {
