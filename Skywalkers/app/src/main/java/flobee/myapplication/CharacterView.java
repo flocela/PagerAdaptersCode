@@ -5,26 +5,23 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class CharacterView extends LinearLayout {
+import java.util.List;
 
+public class CharacterView extends LinearLayout {
+  private ChildButtonListener listener;
   private String characterName;
 
   public CharacterView(Context context, AttributeSet attrs) {
     super(context, attrs);
     LayoutInflater inflater = (LayoutInflater)context.
       getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    inflater.inflate(R.layout.character, this, true);
-  }
-
-  public void setCharacter (Character character) {
-    characterName = character.getName();
-    setName(character.getName());
-    setDrawable(NamedDrawable.getDrawableFromName(this.getContext(),
-      character.getName()));
+    inflater.inflate(R.layout.character_w_kids, this, true);
   }
 
   public Drawable getDrawable () {
@@ -36,27 +33,24 @@ public class CharacterView extends LinearLayout {
     return characterName;
   }
 
-  private void setDrawable (Drawable drawable) {
-    ImageView imageView = (ImageView)this.findViewById(R.id.character_pict);
-    imageView.setImageDrawable(drawable);
-  }
-
-  private void setName (String characterName) {
-    TextView nameView = (TextView)this.findViewById(R.id.character_name);
-    nameView.setText(characterName);
-  }
-
-
-}
-  /*HH
-  R.layout.character_w_kids
-
   public void setCharacter (Character character) {
     characterName = character.getName();
     setName(character.getName());
     setDrawable(NamedDrawable.getDrawableFromName(this.getContext(),
       character.getName()));
     setChildren(character.getChildren(), character.getName());
+  }
+
+  public void setChildListener(ChildButtonListener listener) {
+    this.listener = listener;
+    LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.children_buttons);
+    for (int ii=0; ii<linearLayout.getChildCount(); ii++) {
+      View view = linearLayout.getChildAt(ii);
+      if (view instanceof Button) {
+        Button button = (Button)view;
+        setListener((Button)view, characterName, button.getText().toString());
+      }
+    }
   }
 
   private void setChildren (List<Character> children, final String parentName) {
@@ -77,20 +71,14 @@ public class CharacterView extends LinearLayout {
     }
   }
 
-  private ChildListener listener;
-  HH*/
+  private void setDrawable (Drawable drawable) {
+    ImageView imageView = (ImageView)this.findViewById(R.id.character_pict);
+    imageView.setImageDrawable(drawable);
+  }
 
-  /*II
-  public void setChildListener(ChildListener listener) {
-    this.listener = listener;
-    LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.children_buttons);
-    for (int ii=0; ii<linearLayout.getChildCount(); ii++) {
-      View view = linearLayout.getChildAt(ii);
-      if (view instanceof Button) {
-        Button button = (Button)view;
-        setListener((Button)view, characterName, button.getText().toString());
-      }
-    }
+  private void setName (String characterName) {
+    TextView nameView = (TextView)this.findViewById(R.id.character_name);
+    nameView.setText(characterName);
   }
 
   private void setListener(Button button, final String parent, final String child) {
@@ -103,7 +91,7 @@ public class CharacterView extends LinearLayout {
       }
     });
   }
-  }
-  II*/
+}
+
 
 

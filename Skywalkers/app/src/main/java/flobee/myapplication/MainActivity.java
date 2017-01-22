@@ -1,13 +1,16 @@
 package flobee.myapplication;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-
-import java.util.ArrayList;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+  ChildButtonListener listener;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +20,50 @@ public class MainActivity extends AppCompatActivity {
     //MyFragPagerAdapter implementation
     ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
     CharacterAdapter characterAdapter = new SkywalkerAdapter();
-    ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
-    characterAdapter.addCharacters(allanaSoloFamily);
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.allanaSolo));
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.benSkywalker));
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.jainaSolo));
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.anakinSolo));
     PagerAdapter myFragPagerAdapter =
       new MyFragPagerAdapter(this.getSupportFragmentManager(),characterAdapter);
     viewPager.setAdapter(myFragPagerAdapter);
+
+    //For posting number of fragments in Activity.
+    viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+      @Override
+      public void onPageSelected (int position) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+          @Override
+          public void run() {
+            int numOfFragments = MainActivity.this
+              .getSupportFragmentManager().getFragments().size();
+            TextView fragmentCountView = (TextView)MainActivity.this
+              .findViewById(R.id.num_of_fragments);
+            if (fragmentCountView != null)
+              fragmentCountView.setText("" + numOfFragments);
+          }
+        });
+      }
+    });
+  }
+
+  public ChildButtonListener getChildListener () {
+    if (listener != null)
+      return listener;
+    else {
+      return new ChildButtonListener() {
+        @Override
+        public void changeChildTo(String parent, String nextChild) {
+          ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+          if (viewPager!= null) {
+            MyFragPagerAdapter adapter = (MyFragPagerAdapter)viewPager.getAdapter();
+            adapter.changeChildTo(parent, nextChild);
+            adapter.notifyDataSetChanged();
+            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+          }
+        }
+      };
+    }
   }
 
 }
@@ -32,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
  START*/
 
   /*AA
-  //MyPlainPagerAdapter implementation
+  //MyPlainPagerAdapter
   ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
   CharacterAdapter characterAdapter = new SkywalkerAdapter();
   //ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
@@ -41,29 +83,8 @@ public class MainActivity extends AppCompatActivity {
   viewPager.setAdapter(plainAdapter);
   AA*/
 
-  /*FF
-  ChildListener childListener;
-
-  public ChildListener getChildListener () {
-    if (null != childListener) {
-      childListener = new CharacterView.ChildListener() {
-      @Override
-      public void changeChildTo(String parent, String nextChild) {
-        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-        SwitcherAdapter adapter = (SwitcherAdapter) viewPager.getAdapter();
-        adapter.changeChildTo(parent, nextChild);
-        adapter.notifyDataSetChanged();
-        if (parent != null)
-          viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-      }
-     }
-     return childListener;
-    };
-  }
-  FF*/
-
-  /*JJ1
-  //MyFragPagerAdapter implementation
+  /*EE1
+  //MyFragPagerAdapter
   ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
   CharacterAdapter characterAdapter = new SkywalkerAdapter();
   ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
@@ -71,23 +92,59 @@ public class MainActivity extends AppCompatActivity {
   PagerAdapter myFragPagerAdapter =
     new MyFragPagerAdapter(this.getSupportFragmentManager(),characterAdapter);
   viewPager.setAdapter(myFragPagerAdapter);
-  JJ1*/
 
-  /*JJ2
-  public ChildListener getChildListener () {
-    return new ChildListener() {
-      @Override
-      public void changeChildTo(String parent, String nextChild) {
-        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-        MyFragPagerAdapter adapter = (MyFragPagerAdapter) viewPager.getAdapter();
-        adapter.changeChildTo(parent, nextChild);
-        adapter.notifyDataSetChanged();
-        if (parent != null)
-          viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-      }
-    };
+  //For posting number of fragments in Activity.
+  viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+    @Override
+    public void onPageSelected (int position) {
+      int numOfFragments = MainActivity.this
+        .getSupportFragmentManager().getFragments().size();
+      new Handler(Looper.getMainLooper()).post(new Runnable() {
+        @Override
+        public void run() {
+          int numOfFragments = MainActivity.this
+            .getSupportFragmentManager().getFragments().size();
+          TextView fragmentCountView = (TextView)MainActivity.this
+            .findViewById(R.id.num_of_fragments);
+          if (fragmentCountView != null)
+            fragmentCountView.setText("" + numOfFragments);
+        }
+      });
+    }
+  });
+
+  public ChildButtonListener getChildListener () {
+    return null;
   }
-  JJ2*/
+  EE1*/
+
+  /*EE2
+  public ChildButtonListener getChildListener () {
+    if (listener != null)
+      return listener;
+    else {
+      return new ChildButtonListener() {
+        @Override
+        public void changeChildTo(String parent, String nextChild) {
+          ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+          if (viewPager!= null) {
+            MyFragPagerAdapter adapter = (MyFragPagerAdapter)viewPager.getAdapter();
+            adapter.changeChildTo(parent, nextChild);
+            adapter.notifyDataSetChanged();
+            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+          }
+        }
+      };
+    }
+  }
+  EE2*/
+
+/*JJ
+   characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.allanaSolo));
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.benSkywalker));
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.jainaSolo));
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.anakinSolo));
+ JJ*/
 
 
   /*KK
@@ -105,17 +162,5 @@ public class MainActivity extends AppCompatActivity {
 
   /*MM
   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
-  public ChildListener getChildListener () {
-    return new ChildListener() {
-      @Override
-      public void changeChildTo(String parent, String nextChild) {
-        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-        MyFragStatePagerAdapter adapter = (MyFragStatePagerAdapter) viewPager.getAdapter();
-        adapter.changeChildTo(parent, nextChild);
-        adapter.notifyDataSetChanged();
-        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-      }
-    };
-  }
   MM*/
+

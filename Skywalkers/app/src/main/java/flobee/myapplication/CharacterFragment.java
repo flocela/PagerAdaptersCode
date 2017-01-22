@@ -29,6 +29,7 @@ public class CharacterFragment extends Fragment {
     super.onCreate(savedInstanceState);
     Bundle args = getArguments();
     character = (Character)args.get(CHARACTER_KEY);
+
   }
 
   @Override
@@ -36,6 +37,8 @@ public class CharacterFragment extends Fragment {
                            Bundle savedInstanceState) {
     CharacterView characterView = new CharacterView(this.getContext(), null);
     characterView.setCharacter(character);
+    characterView.setChildListener(
+      ((MainActivity)getActivity()).getChildListener());
     return characterView;
   }
 
@@ -73,9 +76,9 @@ public class CharacterFragment extends Fragment {
     }
   }
 
-  /*II -add to onCreate(Bundle savedInstanceState)
+  /*II -add to onCreateView()
   characterView.setChildListener(
-  ((MainActivity)getActivity()).getChildListener())
+  ((MainActivity)getActivity()).getChildListener());
   II */
 
   /*JJ

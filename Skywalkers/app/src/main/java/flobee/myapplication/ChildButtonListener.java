@@ -1,6 +1,6 @@
 package flobee.myapplication;
 
 
-public interface ChildListener {
+public interface ChildButtonListener {
   void changeChildTo(String parent, String nextChild);
 }

@@ -32,4 +32,5 @@ public class CharacterUTest2 {
     assertTrue(twins.contains(mockSecondBorn));
     assertFalse(twins.contains(mockBadSon));
   }
+
 }

@@ -16,6 +16,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.spy;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -33,13 +34,14 @@ public class CharacterViewUTest {
 
   @Mock Context         mockContext;
   @Mock TextView        mockNameView;
+  @Mock TextView        mockBadView;
   @Mock ImageView       mockImageView;
   @Mock LayoutInflater  mockInflater;
   @Mock Drawable        mockDrawable;
   @Mock Drawable        mockBadDrawable;
   @Mock LinearLayout    mockLinearLayout;
   @Mock OffspringButton mockOffspringButton;
-  private String        anakin = SkyWalker.anakinSkywalker.getName();
+  private String anakinName = SkyWalker.anakinSkywalker.getName();
 
   @Before
   public void init () throws Exception {
@@ -47,7 +49,7 @@ public class CharacterViewUTest {
     when(mockContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).
       thenReturn(mockInflater);
     mockStatic(NamedDrawable.class);
-    when(NamedDrawable.getDrawableFromName(mockContext, anakin)).thenReturn(mockDrawable);
+    when(NamedDrawable.getDrawableFromName(mockContext, anakinName)).thenReturn(mockDrawable);
     whenNew(OffspringButton.class).withAnyArguments().thenReturn(mockOffspringButton);
   }
 
@@ -66,16 +68,13 @@ public class CharacterViewUTest {
     when(spyCharView.findViewById(R.id.children_buttons)).thenReturn(mockLinearLayout);
     when(spyCharView.getContext()).thenReturn(mockContext);
 
-    spyCharView.setCharacter(SkyWalker.getCharacter(anakin));
+    spyCharView.setCharacter(SkyWalker.getCharacter(anakinName));
 
-    verify(mockNameView).setText(anakin);
+    verify(mockNameView).setText(anakinName);
     verify(mockImageView).setImageDrawable(mockDrawable);
+    verify(mockLinearLayout, times(2)).addView(mockOffspringButton);
+    when(spyCharView.findViewById(R.id.children_buttons)).thenReturn(mockLinearLayout);
+    whenNew(OffspringButton.class).withAnyArguments().thenReturn(mockOffspringButton);
   }
-
-  /*HH
-   verify(mockLinearLayout, times(2)).addView(mockOffspringButton);
-   when(spyCharView.findViewById(R.id.children_buttons)).thenReturn(mockLinearLayout);
-   whenNew(OffspringButton.class).withAnyArguments().thenReturn(mockOffspringButton);
-   */
 
 }

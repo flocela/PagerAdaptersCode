@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertFalse;
 import static org.mockito.Mockito.verify;
@@ -75,7 +76,7 @@ public class MyPlainPagerAdapterUTest2 {
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
     Object returnedObject = pagerAdapter.instantiateItem(mockContainerView, mockPosition);
 
-    assertTrue(leiaName.equals(returnedObject));
+    assertEquals(leiaName, returnedObject);
   }
   //BB */
 

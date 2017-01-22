@@ -21,10 +21,10 @@ public class MyPlainPagerAdapter extends PagerAdapter {
   }
 
   @Override
-  public Object instantiateItem(ViewGroup container, int position) {
-    Character character = characterAdapter.getCharacterAt(position);
+  public String instantiateItem(ViewGroup container, int position) {
     Context context = container.getContext();
     CharacterView characterView = new CharacterView(context, null);
+    Character character = characterAdapter.getCharacterAt(position);
     characterView.setCharacter(character);
     container.addView(characterView);
     return character.getName();
