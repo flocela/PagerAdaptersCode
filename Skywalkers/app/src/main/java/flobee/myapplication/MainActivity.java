@@ -1,9 +1,12 @@
 package flobee.myapplication;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -16,12 +19,31 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
+    ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
     CharacterAdapter characterAdapter = new SkywalkerAdapter();
     ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
     characterAdapter.addCharacters(allanaSoloFamily);
-    PagerAdapter plainAdapter = new MyPlainPagerAdapter(characterAdapter);
-    viewPager.setAdapter(plainAdapter);
+    PagerAdapter myFragPagerAdapter =
+      new MyFragPagerAdapter(this.getSupportFragmentManager(), characterAdapter);
+    viewPager.setAdapter(myFragPagerAdapter);
+
+    //For posting number of fragments in Activity.
+    viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+      @Override
+      public void onPageSelected(int position) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+          @Override
+          public void run() {
+            int numOfFragments = MainActivity.this
+              .getSupportFragmentManager().getFragments().size();
+            TextView fragmentCountView = (TextView) MainActivity.this
+              .findViewById(R.id.num_of_fragments);
+            if (fragmentCountView != null)
+              fragmentCountView.setText("" + numOfFragments);
+          }
+        });
+      }
+    });
   }
 
   public ChildButtonListener getChildListener () {
