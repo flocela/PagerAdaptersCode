@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         });
       }
     });
+    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
   }
 
   public ChildButtonListener getChildListener () {
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
   and in ChildButtonListener change FragPagerAdapter to FragStatePagerAdapter
   KK*/
 
-  /*LL
+  /*LL add to onCreate() method
   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
   LL*/
 
