@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     PagerAdapter myFragStatePagerAdapter =
       new MyFragStatePagerAdapter(this.getSupportFragmentManager(),characterAdapter);
     viewPager.setAdapter(myFragStatePagerAdapter);
+    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
     //For posting number of fragments in Activity.
     viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {

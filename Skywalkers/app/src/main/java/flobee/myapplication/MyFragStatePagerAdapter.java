@@ -3,6 +3,7 @@ package flobee.myapplication;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 
 public class MyFragStatePagerAdapter extends FragmentStatePagerAdapter2 {
@@ -29,6 +30,19 @@ public class MyFragStatePagerAdapter extends FragmentStatePagerAdapter2 {
   }
 
   public void changeChildTo(String parent, String nextChild) {
+    Log.i("ATAG", "MyFSP changeChildTo() (parent, child): (" + parent +", " +nextChild +")");
+    characterAdapter.changeChildTo(parent, nextChild);
+  }
+
+  @Override
+  public int getItemPosition(Object object) {
+    CharacterFragment characterFragment = (CharacterFragment)object;
+    Character character = characterFragment.getCharacter();
+    Log.i("ATAG", "MyFSP getObject       getItemPosition: " + character.getName());
+    if (character != null)
+      return characterAdapter.getItemPosition(character);
+    else
+      return PagerAdapter.POSITION_NONE;
   }
 }
   /*KK
@@ -51,13 +65,7 @@ public class MyFragStatePagerAdapter extends FragmentStatePagerAdapter2 {
     return characterAdapter.getCount();
   }
 
-  public void changeChildTo (String parent, String nextChild) {
-  }
-
- KK*/
-
-  /*LL
-  public void changeChildTo(String parent, String nextChild) {
+   public void changeChildTo(String parent, String nextChild) {
     Log.i("ATAG", "MyFSP changeChildTo() (parent, child): (" + parent +", " +nextChild +")");
     characterAdapter.changeChildTo(parent, nextChild);
   }
@@ -73,5 +81,4 @@ public class MyFragStatePagerAdapter extends FragmentStatePagerAdapter2 {
       return PagerAdapter.POSITION_NONE;
   }
 
-
-  LL*/
+ KK*/

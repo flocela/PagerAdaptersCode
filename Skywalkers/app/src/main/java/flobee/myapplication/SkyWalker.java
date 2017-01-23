@@ -32,7 +32,9 @@ public class SkyWalker {
     anakinSkywalker.setChildren(leiaOrgana, lukeSkywalker);
     lukeSkywalker.setChildren(benSkywalker);
     leiaOrgana.setChildren(jainaSolo, jacenSolo, anakinSolo);
-    jacenSolo.setChildren(allanaSolo);
+    jacenSolo.setChildren(flobeeSolo);
+    flobeeSolo.setChildren(kevinSolo);
+    kevinSolo.setChildren(allanaSolo);
     endsWithAllana.add(shmiSkywalker);
     endsWithAllana.add(anakinSkywalker);
     endsWithAllana.add(leiaOrgana);

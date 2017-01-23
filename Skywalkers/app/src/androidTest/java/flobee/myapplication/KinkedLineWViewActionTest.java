@@ -41,7 +41,8 @@ public class KinkedLineWViewActionTest {
   private static final String leia_o   = "Leia Organa";
   private static final String jacen_s  = "Jacen Solo";
   private static final String allana_s = "Allana Solo";
-
+  private static final String flobee_s = "Flobee Solo";
+  private static final String kevin_s  = "Kevin Solo";
   @Rule
   public ActivityTestRule<MainActivity> mActivityRule =
     new ActivityTestRule<>( MainActivity.class);
@@ -61,20 +62,14 @@ public class KinkedLineWViewActionTest {
       //HH*/
   }
 
-  // KinkedLineWIRTest toBenThenToAllana fails half the time when
-  // NoPageTransformer is not added even when Developer Animations are off.
-  // When this happened ViewPager.SimpleOnPageChangeListener 's methods in
-  // idling resource were never not called after first perform(swipeLeft()).
-  // Since setting viewPager.setPageTransformer, this has failed twice.
   @Test
   public void toBenThenToAllana () {
     ///*HH
-
     onView(isRoot()).perform(swipeLeft());
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(anakin_s), withId(R.id.character_name)),
-        2000));
+        1500));
 
     onView(allOf(withId(R.id.offspring_button), withText(luke_s))).perform(click());
     onView(isRoot())
@@ -98,13 +93,9 @@ public class KinkedLineWViewActionTest {
         1500));
 
     onView(isRoot()).perform(swipeLeft());
-    onView(isRoot())
-      .perform(waitForMatch(
-        allOf(isCompletelyDisplayed(), withText(jacen_s), withId(R.id.character_name)),
-        1500));
+    onView(isRoot()).perform(swipeLeft());
+    onView(isRoot()).perform(swipeLeft());
 
-    onView(isRoot()).perform(swipeLeft());
-    onView(isRoot()).perform(swipeLeft());
     onView(isRoot()).perform(swipeLeft());
     onView(isRoot())
       .perform(waitForMatch(

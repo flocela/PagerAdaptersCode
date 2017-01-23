@@ -77,7 +77,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
     return fragment;
   }
 
-  @Override
+ /* @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
     Fragment fragment = (Fragment) object;
 
@@ -94,7 +94,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
     mFragments.set(position, null);
 
     mCurTransaction.remove(fragment);
-  }
+  }*/
 
   @Override
   public void setPrimaryItem(ViewGroup container, int position, Object object) {
@@ -180,25 +180,15 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
   }
 
 
-  /*MM
+  ///*MM
   @Override
   public void notifyDataSetChanged() {
-    //Checks if fragments after currFragment are incorrect, if so deletes them.
-    //Does not check anything else.
     Fragment currF = mCurrentPrimaryItem;
-    List<Integer> toRemove = new LinkedList<>();
     if (currF != null) {
       int currPosition = (findFragment(currF));
       if (currPosition != -1) {
         for (int ii=currPosition+1; ii<mFragments.size(); ii++) {
-          Fragment existingFragment = mFragments.get(ii);
-          if (existingFragment == null)
-            toRemove.add(ii);
-          else if(getItemPosition(existingFragment) == POSITION_NONE)
-            toRemove.add(ii);
-        }
-        for (Integer toGo : toRemove) {
-          removeFragment(toGo);
+          removeFragment(ii);
         }
       }
     }
@@ -254,5 +244,5 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
     mCurTransaction.remove(fragment);
   }
 
-  MM*/
+  //MM*/
 }
