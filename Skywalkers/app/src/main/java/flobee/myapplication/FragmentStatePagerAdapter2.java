@@ -49,6 +49,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
     // to do.  This can happen when we are restoring the entire pager
     // from its saved state, where the fragment manager has already
     // taken care of restoring the fragments we previously had instantiated.
+    Log.i("ATAG", "FragmentStatePagerAdapter2: instantiateItem: "+position);
     if (mFragments.size() > position) {
       Fragment f = mFragments.get(position);
       if (f != null) {
@@ -185,6 +186,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
   ///*MM
   @Override
   public void notifyDataSetChanged() {
+    Log.i("ATAG", "FragmentStatePagerAdapter2: notifyDataSetChanged");
     Fragment currF = mCurrentPrimaryItem;
     List<Integer> toRemove = new LinkedList<>();
     if (currF != null) {
@@ -202,6 +204,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
         }
       }
     }
+    Log.i("ATAG", "FragmentStatePagerAdapter2: notifyDataSetChanged Ended now notifyViewPager");
     super.notifyDataSetChanged();
   }
 
@@ -231,6 +234,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
 
   @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
+    Log.i("ATAG", "FragmentStatePagerAdapter2: destroyItem:"+position + ", " +object.toString());
     Fragment fragment = (Fragment) object;
 
     if (mCurTransaction == null) {
