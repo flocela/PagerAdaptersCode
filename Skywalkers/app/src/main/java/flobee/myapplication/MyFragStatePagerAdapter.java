@@ -3,10 +3,11 @@ package flobee.myapplication;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 
-public class MyFragStatePagerAdapter extends FragmentStatePagerAdapter2 {
+public class MyFragStatePagerAdapter extends FragmentStatePagerAdapter {
 
   CharacterAdapter characterAdapter;
 

@@ -82,7 +82,7 @@ public class KinkedLineWIRTest {
     registerIdlingResources(idlingResource);
 
     onView(isRoot()).perform(swipeLeft());
-    onView(allOf(withId(R.id.offspring_button), withText(luke_s))).perform(click());
+    onView(allOf(withId(R.id.offspring_button), withText(luke_s), isDisplayed())).perform(click());
     onView(allOf(withId(R.id.character_name),withText(luke_s))).
       check(matches(isCompletelyDisplayed()));
 

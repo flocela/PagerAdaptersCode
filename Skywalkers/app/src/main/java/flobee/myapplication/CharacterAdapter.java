@@ -11,13 +11,3 @@ public interface CharacterAdapter {
   int       getItemPosition (Character character);
   void      changeChildTo (String parent, String child);
 }
-  /*BB
-
-
-  BB*/
-
-  /*II
-  void      gotCharacterAt(int position);
-  int       getItemPosition (Character character);
-  void      changeChildTo (String parent, String child);
-  II*/
