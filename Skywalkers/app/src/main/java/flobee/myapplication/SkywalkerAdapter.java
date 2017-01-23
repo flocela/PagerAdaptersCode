@@ -12,15 +12,12 @@ public class SkywalkerAdapter implements CharacterAdapter {
   }
 
   public Character getCharacterAt (int position) {
-    if (position < characters.size())
-      return characters.get(position);
-    else
-      return null;
+    return null;
   }
 
   @Override
   public int getCount() {
-    return characters.size();
+    return -1;
   }
 
   @Override

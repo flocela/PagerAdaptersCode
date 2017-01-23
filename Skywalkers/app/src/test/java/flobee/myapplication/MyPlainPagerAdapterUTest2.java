@@ -14,6 +14,8 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.when;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 import static org.mockito.Mockito.verify;
@@ -78,7 +80,7 @@ public class MyPlainPagerAdapterUTest2 {
   }
   //BB */
 
-  /*CC
+  ///*CC
   // Tests destroyItem(View container, int mockPosition, Object view)
   // View is removed from its container
   @Test
@@ -110,6 +112,6 @@ public class MyPlainPagerAdapterUTest2 {
     when(mockCharacterView.getName()).thenReturn("Luke");
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
     assertFalse(pagerAdapter.isViewFromObject(mockCharacterView, leiaName));
-  } CC */
+  } //CC */
 
 }
