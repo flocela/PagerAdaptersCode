@@ -81,19 +81,5 @@ public class CharacterFragment extends Fragment {
     super.onDestroy();
   }
 
-  /*II -add to onCreateView()
-  characterView.setChildListener(
-  ((MainActivity)getActivity()).getChildListener());
-  II */
-
-  /*JJ
-    public long getNameHash () {
-   Character tempCharacter = this.character;
-    if (tempCharacter == null) {
-      return -1;
-    }
-    return getCharacter().getCharacterNameHashCode();
-  }
-  JJ*/
 
 }
