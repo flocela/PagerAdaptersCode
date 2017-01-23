@@ -2,29 +2,16 @@ package flobee.myapplication;
 
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.TestCase.assertFalse;
-import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.when;
-import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 
-///*BB
+/*BB
 @RunWith(PowerMockRunner.class) // need PowerMockRunner so add testCompile('org.powermock:powermock-module-junit4:1.6.2)
 @PrepareForTest({MyPlainPagerAdapter.class, NamedDrawable.class, CharacterView.class}) // whenNew is called from inside these classes. PrepareForTest requires @RunWith(PowerMockRunner.class).
-//B*/
+BB*/
 public class MyPlainPagerAdapterUTest2 {
 
   @Mock CharacterAdapter mockCharacterAdapter;
@@ -38,7 +25,7 @@ public class MyPlainPagerAdapterUTest2 {
   @Mock String           mockAName;
   AttributeSet           mockAttributeSet = null;
   @Mock int              mockPosition;
-  ///*BB
+  /*BB
 
   @Before
   public void initCharacters () throws Exception {
@@ -78,9 +65,9 @@ public class MyPlainPagerAdapterUTest2 {
 
     assertEquals(leiaName, returnedObject);
   }
-  //BB */
+  BB */
 
-  ///*CC
+  /*CC
   // Tests destroyItem(View container, int mockPosition, Object view)
   // View is removed from its container
   @Test
@@ -112,6 +99,6 @@ public class MyPlainPagerAdapterUTest2 {
     when(mockCharacterView.getName()).thenReturn("Luke");
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
     assertFalse(pagerAdapter.isViewFromObject(mockCharacterView, leiaName));
-  } //CC */
+  } CC */
 
 }
