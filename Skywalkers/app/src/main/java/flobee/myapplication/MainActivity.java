@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.benSkywalker));
     characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.jainaSolo));
     characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.anakinSolo));
-    PagerAdapter myFragStatePagerAdapter =
-      new MyFragStatePagerAdapter(this.getSupportFragmentManager(),characterAdapter);
-    viewPager.setAdapter(myFragStatePagerAdapter);
+    PagerAdapter myFragPagerAdapter =
+      new MyFragPagerAdapter(this.getSupportFragmentManager(),characterAdapter);
+    viewPager.setAdapter(myFragPagerAdapter);
 
     //For posting number of fragments in Activity.
     viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         public void changeChildTo(String parent, String nextChild) {
           ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
           if (viewPager!= null) {
-            MyFragStatePagerAdapter adapter = (MyFragStatePagerAdapter)viewPager.getAdapter();
+            MyFragPagerAdapter adapter = (MyFragPagerAdapter)viewPager.getAdapter();
             adapter.changeChildTo(parent, nextChild);
             adapter.notifyDataSetChanged();
             viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
