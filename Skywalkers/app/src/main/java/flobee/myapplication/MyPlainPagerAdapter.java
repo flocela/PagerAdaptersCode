@@ -27,7 +27,7 @@ public class MyPlainPagerAdapter extends PagerAdapter {
   //in the container.
   @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
-    
+
   }
 
   @Override

@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
   //MyPlainPagerAdapter
   ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
   CharacterAdapter characterAdapter = new SkywalkerAdapter();
-  //ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
-  //characterAdapter.addCharacters(allanaSoloFamily);
+  ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
+  characterAdapter.addCharacters(allanaSoloFamily);
   PagerAdapter plainAdapter = new MyPlainPagerAdapter(characterAdapter);
   viewPager.setAdapter(plainAdapter);
   AA*/
