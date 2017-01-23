@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 
 public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
@@ -80,7 +78,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
     return fragment;
   }
 
- /* @Override
+  @Override
   public void destroyItem(ViewGroup container, int position, Object object) {
     Fragment fragment = (Fragment) object;
 
@@ -97,7 +95,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
     mFragments.set(position, null);
 
     mCurTransaction.remove(fragment);
-  }*/
+  }
 
   @Override
   public void setPrimaryItem(ViewGroup container, int position, Object object) {
@@ -183,7 +181,7 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
   }
 
 
-  ///*MM
+  /*LL
   @Override
   public void notifyDataSetChanged() {
     Log.i("ATAG", "FragmentStatePagerAdapter2: notifyDataSetChanged");
@@ -258,5 +256,5 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
     mCurTransaction.remove(fragment);
   }
 
-  //MM*/
+  //LL*/
 }

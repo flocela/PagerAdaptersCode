@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
   and in ChildButtonListener change FragPagerAdapter to FragStatePagerAdapter
   KK*/
 
-  /*MM
+  /*LL
   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-  MM*/
+  LL*/
 

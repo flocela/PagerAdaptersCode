@@ -15,7 +15,6 @@ public class MyFragStatePagerAdapter extends FragmentStatePagerAdapter2 {
     this.characterAdapter = characterAdapter;
   }
 
-  @Override
   public Fragment getItem(int position) {
     Log.i("ATAG", "FSPA getItem(position)      position: " + position + " char: " + characterAdapter.getCharacterAt(position).getName());
     Character character = characterAdapter.getCharacterAt(position);
@@ -46,10 +45,6 @@ public class MyFragStatePagerAdapter extends FragmentStatePagerAdapter2 {
   }
 }
   /*KK
-  public MyFragStatePagerAdapter(FragmentManager fm, CharacterAdapter characterAdapter) {
-    super(fm);
-    this.characterAdapter = characterAdapter;
-  }
 
   @Override
   public Fragment getItem(int position) {
@@ -65,7 +60,7 @@ public class MyFragStatePagerAdapter extends FragmentStatePagerAdapter2 {
     return characterAdapter.getCount();
   }
 
-   public void changeChildTo(String parent, String nextChild) {
+  public void changeChildTo(String parent, String nextChild) {
     Log.i("ATAG", "MyFSP changeChildTo() (parent, child): (" + parent +", " +nextChild +")");
     characterAdapter.changeChildTo(parent, nextChild);
   }
