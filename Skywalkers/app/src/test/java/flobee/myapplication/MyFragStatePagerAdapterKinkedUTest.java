@@ -2,10 +2,15 @@ package flobee.myapplication;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -13,6 +18,12 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
 
+import static junit.framework.Assert.assertEquals;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
+import static org.powermock.api.support.membermodification.MemberMatcher.methodsDeclaredIn;
+import static org.powermock.api.support.membermodification.MemberModifier.suppress;
+import static org.mockito.Mockito.verify;
 @RunWith(PowerMockRunner.class) // PowerMockRunner is required calling whenNew
 @PrepareForTest({CharacterFragment.class})
 public class MyFragStatePagerAdapterKinkedUTest {
@@ -39,7 +50,7 @@ public class MyFragStatePagerAdapterKinkedUTest {
   int    itemPosition = 10;
   String leiaOName = "Leia Organa";
   AttributeSet mockAttributeSet = null;
-  /*LL
+ // /*LL
   @Before
   public void init () {
     //suppress(constructorsDeclaredIn(FragmentPagerAdapter.class) should
@@ -68,14 +79,14 @@ public class MyFragStatePagerAdapterKinkedUTest {
   // Returns that fragment, which is mockCharacterFragment.
   @Test
   public void returnsFragmentWithCorrectAttributes () {
-    when(mockCharacterAdapter.getCharacterAt(mockPosition)).thenReturn(mockLeiaO);
+    when(mockCharacterAdapter.getCharacterAt(position)).thenReturn(mockLeiaO);
     when(CharacterFragment.newInstance(mockLeiaO)).thenReturn(mockLeiaFragment);
 
     MyFragStatePagerAdapter fPagerAdapter =
       new MyFragStatePagerAdapter(mockFragmentManager, mockCharacterAdapter);
 
-    Fragment fragment = fPagerAdapter.getItem(mockPosition);
-    verify(mockCharacterAdapter).gotCharacterAt(mockPosition);
+    Fragment fragment = fPagerAdapter.getItem(position);
+    verify(mockCharacterAdapter).gotCharacterAt(position);
     assertEquals(mockLeiaFragment, fragment);
   }
 
@@ -104,5 +115,5 @@ public class MyFragStatePagerAdapterKinkedUTest {
     adapter.changeChildTo("Anakin Skywalker", "Leia Organa");
     verify(mockCharacterAdapter).changeChildTo("Anakin Skywalker", "Leia Organa");
   }
-  LL*/
+  //LL*/
 }
