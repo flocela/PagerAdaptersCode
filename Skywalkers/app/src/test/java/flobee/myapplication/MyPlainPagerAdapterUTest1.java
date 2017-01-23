@@ -25,8 +25,9 @@ CharacterAdapter mockCharacterAdapter;
     when(mockCharacterAdapter.getCount()).thenReturn(count);
 
     PagerAdapter pagerAdapter = new MyPlainPagerAdapter(mockCharacterAdapter);
+    int returnedCount = pagerAdapter.getCount();
 
-    assertEquals(count, pagerAdapter.getCount());
+    assertEquals(count, returnedCount);
   }
 //AA*/
 }
