@@ -69,28 +69,28 @@ public class KinkedLineWViewActionTest {
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(anakin_s), withId(R.id.character_name)),
-        1500));
+        3000));
 
-    onView(allOf(withId(R.id.offspring_button), withText(luke_s))).perform(click());
+    onView(allOf(withId(R.id.offspring_button), withText(luke_s), isDisplayed())).perform(click());
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(luke_s), withId(R.id.character_name)),
-        1500));
+        3000));
 
     onView(isRoot()).perform(swipeLeft());
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(ben_s), withId(R.id.character_name)),
-        1500));
+        3000));
 
     onView(isRoot()).perform(swipeRight());
     onView(isRoot()).perform(swipeRight());
 
-    onView(allOf(withId(R.id.offspring_button), withText(leia_o))).perform(click());
+    onView(allOf(withId(R.id.offspring_button), withText(leia_o), isDisplayed())).perform(click());
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(leia_o), withId(R.id.character_name)),
-        1500));
+        3000));
 
     onView(isRoot()).perform(swipeLeft());
     onView(isRoot()).perform(swipeLeft());
@@ -100,13 +100,13 @@ public class KinkedLineWViewActionTest {
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(allana_s), withId(R.id.character_name)),
-        1500));
+        3000));
 
     onView(isRoot()).perform(swipeLeft());
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(allana_s), withId(R.id.character_name)),
-        1500));
+        3000));
 
       //HH*/
   }

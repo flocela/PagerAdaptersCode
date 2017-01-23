@@ -8,8 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
   ChildButtonListener listener;
@@ -21,8 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
     CharacterAdapter characterAdapter = new SkywalkerAdapter();
-    ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
-    characterAdapter.addCharacters(allanaSoloFamily);
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.allanaSolo));
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.benSkywalker));
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.jainaSolo));
+    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.anakinSolo));
     PagerAdapter myFragPagerAdapter =
       new MyFragPagerAdapter(this.getSupportFragmentManager(), characterAdapter);
     viewPager.setAdapter(myFragPagerAdapter);
@@ -47,7 +47,22 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public ChildButtonListener getChildListener () {
-    return null;
+    if (listener != null)
+      return listener;
+    else {
+      return new ChildButtonListener() {
+        @Override
+        public void changeChildTo(String parent, String nextChild) {
+          ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+          if (viewPager!= null) {
+            MyFragPagerAdapter adapter = (MyFragPagerAdapter)viewPager.getAdapter();
+            adapter.changeChildTo(parent, nextChild);
+            adapter.notifyDataSetChanged();
+            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+          }
+        }
+      };
+    }
   }
 
 }

@@ -1,9 +1,15 @@
 package flobee.myapplication;
 
+import android.support.v4.view.PagerAdapter;
+
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+
+import static junit.framework.Assert.assertEquals;
 
 @RunWith(JUnit4.class)
 public class SkwalkerAdapterKinkedUTest {
@@ -22,7 +28,7 @@ public class SkwalkerAdapterKinkedUTest {
   private static Character allanaS;
   private static Character anakinSolo;
   private static SkywalkerAdapter skywalkerAdapter;
-/*JJ
+///*JJ
   @Before
   public void initCharacters () {
     skywalkerAdapter = new SkywalkerAdapter();
@@ -128,7 +134,7 @@ public class SkwalkerAdapterKinkedUTest {
     assertEquals(2, skywalkerAdapter.getItemPosition(lukeS));
     assertEquals(3, skywalkerAdapter.getItemPosition(benS));
   }
-JJ*/
+//JJ*/
   //TODO add test for when child does not exist in any line.
 
 }

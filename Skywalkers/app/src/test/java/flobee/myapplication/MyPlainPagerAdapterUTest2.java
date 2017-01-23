@@ -2,13 +2,21 @@ package flobee.myapplication;
 
 
 import android.content.Context;
+import android.support.v4.view.PagerAdapter;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+
+import static junit.framework.Assert.assertEquals;
+import static org.powermock.api.mockito.PowerMockito.when;
+import static org.powermock.api.mockito.PowerMockito.whenNew;
+import static org.mockito.Mockito.verify;
 
 
 ///*BB
@@ -28,7 +36,7 @@ public class MyPlainPagerAdapterUTest2 {
   @Mock String           mockAName;
   AttributeSet           mockAttributeSet = null;
   @Mock int              mockPosition;
-  /*BB
+  ///*BB
 
   @Before
   public void initCharacters () throws Exception {
@@ -68,7 +76,7 @@ public class MyPlainPagerAdapterUTest2 {
 
     assertEquals(leiaName, returnedObject);
   }
-  BB */
+  //BB */
 
   /*CC
   // Tests destroyItem(View container, int mockPosition, Object view)
