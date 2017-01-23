@@ -2,27 +2,15 @@ package flobee.myapplication;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.view.ViewGroup;
 
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
-
-import static junit.framework.Assert.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
-import static org.powermock.api.support.membermodification.MemberMatcher.methodsDeclaredIn;
-import static org.powermock.api.support.membermodification.MemberModifier.suppress;
 
 @RunWith(PowerMockRunner.class) // PowerMockRunner is required calling whenNew
 @PrepareForTest({CharacterFragment.class})
@@ -50,7 +38,7 @@ public class MyFragPagerAdapterKinkedUTest {
   int    itemPosition = 10;
   String leiaOName = "Leia Organa";
 
-  ///*JJ
+  /*JJ
   @Before
   public void init () {
     //suppress(constructorsDeclaredIn(FragmentPagerAdapter.class) should
@@ -128,5 +116,5 @@ public class MyFragPagerAdapterKinkedUTest {
       new MyFragPagerAdapter(mockFragmentManager, mockCharacterAdapter);
     assertEquals(mockAnakinHash, adapter.getItemId(mockPosition));
   }
- //JJ*/
+ JJ*/
 }
