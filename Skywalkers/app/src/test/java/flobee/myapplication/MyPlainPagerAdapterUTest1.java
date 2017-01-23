@@ -1,11 +1,22 @@
 package flobee.myapplication;
 
-/*AA
+import android.support.v4.view.PagerAdapter;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import static junit.framework.Assert.assertEquals;
+import static org.powermock.api.mockito.PowerMockito.when;
+
+///*AA
 @RunWith(MockitoJUnitRunner.class)
-AA*/
+//AA*/
 public class MyPlainPagerAdapterUTest1 {
-/*AA
-  @Mock CharacterAdapter mockCharacterAdapter;
+///*AA
+  @Mock
+CharacterAdapter mockCharacterAdapter;
   int   count = 5;
 
   //Tests getCount()
@@ -17,5 +28,5 @@ public class MyPlainPagerAdapterUTest1 {
 
     assertEquals(count, pagerAdapter.getCount());
   }
-AA*/
+//AA*/
 }

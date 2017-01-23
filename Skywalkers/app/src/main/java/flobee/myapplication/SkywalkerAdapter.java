@@ -8,14 +8,19 @@ public class SkywalkerAdapter implements CharacterAdapter {
   private ArrayList<Character> characters = new ArrayList<>();
 
   public void addCharacters (ArrayList<Character> characters) {
+    this.characters = characters;
   }
 
   public Character getCharacterAt (int position) {
-    return null;
+    if (position < characters.size())
+      return characters.get(position);
+    else
+      return null;
   }
 
-  public int getCount () {
-    return -22;
+  @Override
+  public int getCount() {
+    return characters.size();
   }
 
   /*DD

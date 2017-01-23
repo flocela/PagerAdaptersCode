@@ -1,10 +1,14 @@
 package flobee.myapplication;
 
 
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+
+import static junit.framework.Assert.assertEquals;
 
 @RunWith(JUnit4.class)
 public class SkyWalkerAdapterStraightUTest {
@@ -16,7 +20,7 @@ public class SkyWalkerAdapterStraightUTest {
   private static Character allanaS;
   private static SkywalkerAdapter characterAdapter;
 
-  /*DD
+  ///*DD
   @BeforeClass
   public static void initCharacters () {
     shmiS   = new Character("Shmi Skywalker");
@@ -44,5 +48,5 @@ public class SkyWalkerAdapterStraightUTest {
   public void getCount () {
     assertEquals(shmiToAlana.size(), characterAdapter.getCount());
   }
-DD*/
+//DD*/
 }

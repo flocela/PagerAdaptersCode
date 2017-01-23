@@ -1,7 +1,11 @@
 package flobee.myapplication;
 
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,8 +16,12 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    CharacterView characterView = (CharacterView)findViewById(R.id.character_view);
-    characterView.setCharacter(SkyWalker.shmiSkywalker);
+    ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
+    CharacterAdapter characterAdapter = new SkywalkerAdapter();
+    ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
+    characterAdapter.addCharacters(allanaSoloFamily);
+    PagerAdapter plainAdapter = new MyPlainPagerAdapter(characterAdapter);
+    viewPager.setAdapter(plainAdapter);
   }
 
   public ChildButtonListener getChildListener () {

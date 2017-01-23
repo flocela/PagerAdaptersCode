@@ -7,11 +7,11 @@
   android:layout_height="match_parent"
   tools:context="flobee.myapplication.MainActivity">
 
-  <flobee.myapplication.CharacterView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/character_view">
-  </flobee.myapplication.CharacterView>
+  AA<android.support.v4.view.ViewPager
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:id="@+id/view_pager">
+</android.support.v4.view.ViewPager>
 
 
 

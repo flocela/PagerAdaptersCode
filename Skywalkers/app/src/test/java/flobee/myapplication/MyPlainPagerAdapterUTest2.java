@@ -5,13 +5,16 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 
-/*BB
+///*BB
 @RunWith(PowerMockRunner.class) // need PowerMockRunner so add testCompile('org.powermock:powermock-module-junit4:1.6.2)
 @PrepareForTest({MyPlainPagerAdapter.class, NamedDrawable.class, CharacterView.class}) // whenNew is called from inside these classes. PrepareForTest requires @RunWith(PowerMockRunner.class).
-BB*/
+//BB*/
 public class MyPlainPagerAdapterUTest2 {
 
   @Mock CharacterAdapter mockCharacterAdapter;

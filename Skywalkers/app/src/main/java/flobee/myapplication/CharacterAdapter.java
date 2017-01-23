@@ -1,13 +1,15 @@
 package flobee.myapplication;
 
 
-public interface CharacterAdapter {
+import java.util.ArrayList;
 
-}
-  /*BB
+public interface CharacterAdapter {
   int       getCount();
   void      addCharacters(ArrayList<Character> additionalCharacters);
   Character getCharacterAt (int position);
+}
+  /*BB
+
 
   BB*/
 
