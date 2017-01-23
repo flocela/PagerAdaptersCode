@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
@@ -184,11 +186,19 @@ public abstract class FragmentStatePagerAdapter2 extends PagerAdapter {
   @Override
   public void notifyDataSetChanged() {
     Fragment currF = mCurrentPrimaryItem;
+    List<Integer> toRemove = new LinkedList<>();
     if (currF != null) {
       int currPosition = (findFragment(currF));
       if (currPosition != -1) {
         for (int ii=currPosition+1; ii<mFragments.size(); ii++) {
-          removeFragment(ii);
+          Fragment existingFragment = mFragments.get(ii);
+          if (existingFragment == null)
+            toRemove.add(ii);
+          else if(getItemPosition(existingFragment) == POSITION_NONE)
+            toRemove.add(ii);
+        }
+        for (Integer toGo : toRemove) {
+          removeFragment(toGo);
         }
       }
     }
