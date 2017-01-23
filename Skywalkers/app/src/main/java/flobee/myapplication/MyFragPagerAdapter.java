@@ -16,12 +16,12 @@ public class MyFragPagerAdapter extends FragmentPagerAdapter {
 
   @Override
   public int getCount() {
-    return characterAdapter.getCount();
+    return -11;
   }
 
   @Override
   public Fragment getItem(int position) {
-    return CharacterFragment.newInstance(characterAdapter.getCharacterAt(position));
+    return null;
   }
 
   public void changeChildTo(String parent, String nextChild) {
