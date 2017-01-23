@@ -1,24 +1,13 @@
 package flobee.myapplication;
 
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.util.AttributeSet;
 
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import static junit.framework.Assert.assertEquals;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
-import static org.powermock.api.support.membermodification.MemberMatcher.methodsDeclaredIn;
-import static org.powermock.api.support.membermodification.MemberModifier.suppress;
 
 @RunWith(PowerMockRunner.class) // PowerMockRunner is required calling when(Static.method)
 @PrepareForTest({CharacterFragment.class})
@@ -32,7 +21,7 @@ public class MyFragStatePagerAdapterStraightUTest {
   @Mock int               mockPosition = 2;
   @Mock String            mockLeiaString;
   AttributeSet mockAttributeSet = null;
-  ///*KK
+  /*KK
   @Before
   public void init () {
     //suppress(constructorsDeclaredIn(FragmentPagerAdapter.class) should
@@ -63,5 +52,5 @@ public class MyFragStatePagerAdapterStraightUTest {
 
     assertEquals(mockFragment, fragment);
   }
-  //KK*/
+  KK*/
 }

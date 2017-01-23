@@ -135,4 +135,6 @@ public class SkwalkerAdapterKinkedUTest {
     assertEquals(3, skywalkerAdapter.getItemPosition(benS));
   }
 
+  //TODO add test for when child does not exist in any line.
+
 }

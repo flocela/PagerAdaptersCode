@@ -56,7 +56,7 @@ public class StraightLineWViewAction {
   }
 
   @Test
-  public void fiveSwipes () {
+  public void sevenSwipes () {
     onView(isRoot()).perform(swipeLeft());
     onView(isRoot())
       .perform(waitForMatch(
@@ -84,6 +84,12 @@ public class StraightLineWViewAction {
     onView(isRoot())
       .perform(waitForMatch(
         allOf(isCompletelyDisplayed(), withText(kevin_s), withId(R.id.character_name)),
+        1500));
+
+    onView(isRoot()).perform(swipeLeft());
+    onView(isRoot())
+      .perform(waitForMatch(
+        allOf(isCompletelyDisplayed(), withText(allana_s), withId(R.id.character_name)),
         1500));
 
     onView(isRoot()).perform(swipeLeft());

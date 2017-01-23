@@ -21,14 +21,19 @@ public class SkywalkerAdapter implements CharacterAdapter {
   private void moveToNewLine (String child) {
     int indexOfChildInCurrLine = findIndexOfCharacter(currLineIndex, child);
     // Actually, if child is in current line, I don't have to move to a new line.
-    // Only if indexOfChildInCurrLine is -1 do I move to new line.
-    if (indexOfChildInCurrLine == -1) {
+    // Only if indexOfChildInCurrLine is -2 do I move to new line.
+    if (indexOfChildInCurrLine == -2) {
       int oldLineIndex = currLineIndex;
-      currLineIndex = findLineWithCharacter(child);
-      updateDisplayInfoSize();
-      updateDisplayInfoWithOldLine(oldLineIndex);
-      int characterIndex = findIndexOfCharacter(currLineIndex, child);
-      charactersAfterAndIncludingHaveNotBeenDisplayed(characterIndex);
+      int newLineIndex = findLineWithCharacter(child);
+      if (newLineIndex == -2)
+        return;
+      else {
+        currLineIndex = newLineIndex;
+        updateDisplayInfoSize();
+        updateDisplayInfoWithOldLine(oldLineIndex);
+        int characterIndex = findIndexOfCharacter(currLineIndex, child);
+        charactersAfterAndIncludingHaveNotBeenDisplayed(characterIndex);
+      }
     }
   }
 
@@ -62,7 +67,7 @@ public class SkywalkerAdapter implements CharacterAdapter {
   @Override
   public int getItemPosition(Character character) {
     int indexOfCharacter = findIndexOfCharacter(currLineIndex, character);
-    if (indexOfCharacter == -1)
+    if (indexOfCharacter == -2)
       return PagerAdapter.POSITION_NONE;
     if (displayInfos.get(indexOfCharacter) == DISPLAYED)
       return PagerAdapter.POSITION_UNCHANGED;
@@ -79,16 +84,16 @@ public class SkywalkerAdapter implements CharacterAdapter {
       if (line.get(ii).getName().equals(characterName))
         return ii;
     }
-    return -1;
+    return -2;
   }
 
   private int findLineWithCharacter (String characterName) {
     for (int ii=0; ii<characters.size(); ii++) {
       int indexFromCurrLine = findIndexOfCharacter(ii, characterName);
-      if (indexFromCurrLine != -1)
+      if (indexFromCurrLine != -2)
         return ii;
     }
-    return -1;
+    return -2;
   }
 
   private void updateDisplayInfoSize () {
@@ -127,12 +132,14 @@ public class SkywalkerAdapter implements CharacterAdapter {
   }
 
   private int findIndexOfCharacter (int lineIdx, Character character) {
-    ArrayList<Character> line = characters.get(lineIdx);
-    for (int ii = 0; ii< line.size(); ii++) {
-      if (line.get(ii).equals(character))
-        return ii;
+    if (lineIdx < characters.size()) {
+      ArrayList<Character> line = characters.get(lineIdx);
+      for (int ii = 0; ii < line.size(); ii++) {
+        if (line.get(ii).equals(character))
+          return ii;
+      }
     }
-    return -1;
+    return -2;
   }
 
   /*DD
@@ -163,8 +170,8 @@ public class SkywalkerAdapter implements CharacterAdapter {
   private void moveToNewLine (String child) {
     int indexOfChildInCurrLine = findIndexOfCharacter(currLineIndex, child);
     // Actually, if child is in current line, I don't have to move to a new line.
-    // Only if indexOfChildInCurrLine is -1 do I move to new line.
-    if (indexOfChildInCurrLine == -1) {
+    // Only if indexOfChildInCurrLine is -2 do I move to new line.
+    if (indexOfChildInCurrLine == -2) {
       int oldLineIndex = currLineIndex;
       currLineIndex = findLineWithCharacter(child);
       updateDisplayInfoSize();
@@ -213,7 +220,7 @@ public class SkywalkerAdapter implements CharacterAdapter {
   @Override
   public int getItemPosition(Character character) {
     int indexOfCharacter = findIndexOfCharacter(currLineIndex, character);
-    if (indexOfCharacter == -1)
+    if (indexOfCharacter == -2)
       return PagerAdapter.POSITION_NONE;
     if (displayInfos.get(indexOfCharacter) == DISPLAYED)
       return PagerAdapter.POSITION_UNCHANGED;
@@ -230,16 +237,16 @@ public class SkywalkerAdapter implements CharacterAdapter {
       if (line.get(ii).getName().equals(characterName))
         return ii;
     }
-    return -1;
+    return -2;
   }
 
   private int findLineWithCharacter (String characterName) {
     for (int ii=0; ii<characters.size(); ii++) {
       int indexFromCurrLine = findIndexOfCharacter(ii, characterName);
-      if (indexFromCurrLine != -1)
+      if (indexFromCurrLine != -2)
         return ii;
     }
-    return -1;
+    return -2;
   }
 
   private void updateDisplayInfoSize () {
@@ -283,7 +290,7 @@ public class SkywalkerAdapter implements CharacterAdapter {
       if (line.get(ii).equals(character))
         return ii;
     }
-    return -1;
+    return -2;
   }
 
   JJ*/

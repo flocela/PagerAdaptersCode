@@ -3,14 +3,12 @@ package flobee.myapplication;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.WindowManager;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,28 +19,26 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
+    ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
     CharacterAdapter characterAdapter = new SkywalkerAdapter();
-    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.allanaSolo));
-    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.benSkywalker));
-    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.jainaSolo));
-    characterAdapter.addCharacters(SkyWalker.getLineageFor(SkyWalker.anakinSolo));
-    PagerAdapter myFragStatePagerAdapter =
-      new MyFragStatePagerAdapter(this.getSupportFragmentManager(),characterAdapter);
-    viewPager.setAdapter(myFragStatePagerAdapter);
-    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    ArrayList<Character> allanaSoloFamily = SkyWalker.getLineageFor(SkyWalker.allanaSolo);
+    characterAdapter.addCharacters(allanaSoloFamily);
+    PagerAdapter myFragPagerAdapter =
+      new MyFragPagerAdapter(this.getSupportFragmentManager(), characterAdapter);
+    viewPager.setAdapter(myFragPagerAdapter);
 
     //For posting number of fragments in Activity.
     viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
       @Override
-      public void onPageSelected (int position) {
+      public void onPageSelected(int position) {
+        int numOfFragments = MainActivity.this
+          .getSupportFragmentManager().getFragments().size();
         new Handler(Looper.getMainLooper()).post(new Runnable() {
           @Override
           public void run() {
-            List<Fragment> frags = MainActivity.this.getSupportFragmentManager().getFragments();
             int numOfFragments = MainActivity.this
               .getSupportFragmentManager().getFragments().size();
-            TextView fragmentCountView = (TextView)MainActivity.this
+            TextView fragmentCountView = (TextView) MainActivity.this
               .findViewById(R.id.num_of_fragments);
             if (fragmentCountView != null)
               fragmentCountView.setText("" + numOfFragments);
@@ -61,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         public void changeChildTo(String parent, String nextChild) {
           ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
           if (viewPager!= null) {
-            MyFragStatePagerAdapter adapter = (MyFragStatePagerAdapter)viewPager.getAdapter();
+            MyFragPagerAdapter adapter = (MyFragPagerAdapter)viewPager.getAdapter();
             adapter.changeChildTo(parent, nextChild);
             adapter.notifyDataSetChanged();
             viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
